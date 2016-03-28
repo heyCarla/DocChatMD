@@ -1,453 +1,1089 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */; };
-		E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */; };
-		E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E11CA5E6620054D8D3 /* Main.storyboard */; };
-		E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E11923E41CA5E6620054D8D3 /* Assets.xcassets */; };
-		E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */; };
-		E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */; };
-		E11924031CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */; };
-		E11924051CA5ECCC0054D8D3 /* AkiraDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */; };
-		E119240F1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */; };
-		E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */; };
-		E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */; };
-		E11924151CA902580054D8D3 /* OperationResultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924141CA902580054D8D3 /* OperationResultWrapper.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E11923EF1CA5E6620054D8D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E11923D21CA5E6610054D8D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E11923D91CA5E6610054D8D3;
-			remoteInfo = DocChatMD;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		E11923DA1CA5E6610054D8D3 /* DocChatMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocChatMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatViewController.swift; sourceTree = "<group>"; };
-		E11923E21CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E11923E41CA5E6620054D8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E11923E71CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E11923E91CA5E6620054D8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DocChatMDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatMDTests.swift; sourceTree = "<group>"; };
-		E11923F41CA5E6620054D8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatDatasourceTests.swift; sourceTree = "<group>"; };
-		E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraDatasource.swift; sourceTree = "<group>"; };
-		E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatModelFactoryTests.swift; sourceTree = "<group>"; };
-		E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModelFactory.swift; sourceTree = "<group>"; };
-		E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModel.swift; sourceTree = "<group>"; };
-		E11924141CA902580054D8D3 /* OperationResultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationResultWrapper.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		E11923D71CA5E6610054D8D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E11923EB1CA5E6620054D8D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		E11923D11CA5E6610054D8D3 = {
-			isa = PBXGroup;
-			children = (
-				E11923DC1CA5E6620054D8D3 /* DocChatMD */,
-				E11923F11CA5E6620054D8D3 /* DocChatMDTests */,
-				E11923DB1CA5E6610054D8D3 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E11923DB1CA5E6610054D8D3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E11923DA1CA5E6610054D8D3 /* DocChatMD.app */,
-				E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E11923DC1CA5E6620054D8D3 /* DocChatMD */ = {
-			isa = PBXGroup;
-			children = (
-				E11923FF1CA5E69A0054D8D3 /* Datasources */,
-				E11923FD1CA5E68C0054D8D3 /* Models */,
-				E11923FE1CA5E6930054D8D3 /* UI */,
-				E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */,
-				E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */,
-				E11923E11CA5E6620054D8D3 /* Main.storyboard */,
-				E11923E41CA5E6620054D8D3 /* Assets.xcassets */,
-				E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */,
-				E11923E91CA5E6620054D8D3 /* Info.plist */,
-			);
-			path = DocChatMD;
-			sourceTree = "<group>";
-		};
-		E11923F11CA5E6620054D8D3 /* DocChatMDTests */ = {
-			isa = PBXGroup;
-			children = (
-				E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */,
-				E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */,
-				E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */,
-				E11923F41CA5E6620054D8D3 /* Info.plist */,
-			);
-			path = DocChatMDTests;
-			sourceTree = "<group>";
-		};
-		E11923FD1CA5E68C0054D8D3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */,
-				E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */,
-				E11924141CA902580054D8D3 /* OperationResultWrapper.swift */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		E11923FE1CA5E6930054D8D3 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		E11923FF1CA5E69A0054D8D3 /* Datasources */ = {
-			isa = PBXGroup;
-			children = (
-				E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */,
-			);
-			name = Datasources;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		E11923D91CA5E6610054D8D3 /* DocChatMD */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E11923F71CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMD" */;
-			buildPhases = (
-				E11923D61CA5E6610054D8D3 /* Sources */,
-				E11923D71CA5E6610054D8D3 /* Frameworks */,
-				E11923D81CA5E6610054D8D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DocChatMD;
-			productName = DocChatMD;
-			productReference = E11923DA1CA5E6610054D8D3 /* DocChatMD.app */;
-			productType = "com.apple.product-type.application";
-		};
-		E11923ED1CA5E6620054D8D3 /* DocChatMDTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E11923FA1CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMDTests" */;
-			buildPhases = (
-				E11923EA1CA5E6620054D8D3 /* Sources */,
-				E11923EB1CA5E6620054D8D3 /* Frameworks */,
-				E11923EC1CA5E6620054D8D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E11923F01CA5E6620054D8D3 /* PBXTargetDependency */,
-			);
-			name = DocChatMDTests;
-			productName = DocChatMDTests;
-			productReference = E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		E11923D21CA5E6610054D8D3 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = MagicNoodles;
-				TargetAttributes = {
-					E11923D91CA5E6610054D8D3 = {
-						CreatedOnToolsVersion = 7.3;
-					};
-					E11923ED1CA5E6620054D8D3 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = E11923D91CA5E6610054D8D3;
-					};
-				};
-			};
-			buildConfigurationList = E11923D51CA5E6610054D8D3 /* Build configuration list for PBXProject "DocChatMD" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = E11923D11CA5E6610054D8D3;
-			productRefGroup = E11923DB1CA5E6610054D8D3 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				E11923D91CA5E6610054D8D3 /* DocChatMD */,
-				E11923ED1CA5E6620054D8D3 /* DocChatMDTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		E11923D81CA5E6610054D8D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */,
-				E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */,
-				E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E11923EC1CA5E6620054D8D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		E11923D61CA5E6610054D8D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E11924151CA902580054D8D3 /* OperationResultWrapper.swift in Sources */,
-				E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */,
-				E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */,
-				E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */,
-				E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */,
-				E11924051CA5ECCC0054D8D3 /* AkiraDatasource.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E11923EA1CA5E6620054D8D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E11924031CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift in Sources */,
-				E119240F1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift in Sources */,
-				E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E11923F01CA5E6620054D8D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E11923D91CA5E6610054D8D3 /* DocChatMD */;
-			targetProxy = E11923EF1CA5E6620054D8D3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E11923E11CA5E6620054D8D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E11923E21CA5E6620054D8D3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E11923E71CA5E6620054D8D3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		E11923F51CA5E6620054D8D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E11923F61CA5E6620054D8D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E11923F81CA5E6620054D8D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DocChatMD/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		E11923F91CA5E6620054D8D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = DocChatMD/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		E11923FB1CA5E6620054D8D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DocChatMDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMDTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD";
-			};
-			name = Debug;
-		};
-		E11923FC1CA5E6620054D8D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = DocChatMDTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMDTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		E11923D51CA5E6610054D8D3 /* Build configuration list for PBXProject "DocChatMD" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E11923F51CA5E6620054D8D3 /* Debug */,
-				E11923F61CA5E6620054D8D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E11923F71CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMD" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E11923F81CA5E6620054D8D3 /* Debug */,
-				E11923F91CA5E6620054D8D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		E11923FA1CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMDTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E11923FB1CA5E6620054D8D3 /* Debug */,
-				E11923FC1CA5E6620054D8D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = E11923D21CA5E6610054D8D3 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>1E7B4B8A0E463118FCE8D28A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>2304BD855DAF3BE9464C9CC6</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_DocChatMD.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>298FE253FFB96B50B84A2CD8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-DocChatMD.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>60FE8F9EA8169637EEEC063C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F8DEF8D952AAF98882BD337B</string>
+				<string>298FE253FFB96B50B84A2CD8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>862E5F99AD304BEC2A8CDD5F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>C50126D5E8311B06DCB63EB3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2304BD855DAF3BE9464C9CC6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C7F891258E990F518D9A2164</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2304BD855DAF3BE9464C9CC6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923D11CA5E6610054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923DC1CA5E6620054D8D3</string>
+				<string>E11923F11CA5E6620054D8D3</string>
+				<string>E11923DB1CA5E6610054D8D3</string>
+				<string>60FE8F9EA8169637EEEC063C</string>
+				<string>C50126D5E8311B06DCB63EB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923D21CA5E6610054D8D3</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0730</string>
+				<key>LastUpgradeCheck</key>
+				<string>0730</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>MagicNoodles</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>E11923D91CA5E6610054D8D3</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+					</dict>
+					<key>E11923ED1CA5E6620054D8D3</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>TestTargetID</key>
+						<string>E11923D91CA5E6610054D8D3</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>E11923D51CA5E6610054D8D3</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>E11923D11CA5E6610054D8D3</string>
+			<key>productRefGroup</key>
+			<string>E11923DB1CA5E6610054D8D3</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>E11923D91CA5E6610054D8D3</string>
+				<string>E11923ED1CA5E6620054D8D3</string>
+			</array>
+		</dict>
+		<key>E11923D51CA5E6610054D8D3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E11923F51CA5E6620054D8D3</string>
+				<string>E11923F61CA5E6620054D8D3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E11923D61CA5E6610054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E11924151CA902580054D8D3</string>
+				<string>E11923E01CA5E6620054D8D3</string>
+				<string>E11923DE1CA5E6620054D8D3</string>
+				<string>E11924111CA5EF740054D8D3</string>
+				<string>E11924131CA8DA250054D8D3</string>
+				<string>E11924051CA5ECCC0054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923D71CA5E6610054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>C7F891258E990F518D9A2164</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923D81CA5E6610054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E11923E81CA5E6620054D8D3</string>
+				<string>E11923E51CA5E6620054D8D3</string>
+				<string>E11923E31CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923D91CA5E6610054D8D3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E11923F71CA5E6620054D8D3</string>
+			<key>buildPhases</key>
+			<array>
+				<string>862E5F99AD304BEC2A8CDD5F</string>
+				<string>E11923D61CA5E6610054D8D3</string>
+				<string>E11923D71CA5E6610054D8D3</string>
+				<string>E11923D81CA5E6610054D8D3</string>
+				<string>1E7B4B8A0E463118FCE8D28A</string>
+				<string>E38260A5E24DCED88DB677DD</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DocChatMD</string>
+			<key>productName</key>
+			<string>DocChatMD</string>
+			<key>productReference</key>
+			<string>E11923DA1CA5E6610054D8D3</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>E11923DA1CA5E6610054D8D3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>DocChatMD.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E11923DB1CA5E6610054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923DA1CA5E6610054D8D3</string>
+				<string>E11923EE1CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923DC1CA5E6620054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923FF1CA5E69A0054D8D3</string>
+				<string>E11923FD1CA5E68C0054D8D3</string>
+				<string>E11923FE1CA5E6930054D8D3</string>
+				<string>E11923DD1CA5E6620054D8D3</string>
+				<string>E11923DF1CA5E6620054D8D3</string>
+				<string>E11923E11CA5E6620054D8D3</string>
+				<string>E11923E41CA5E6620054D8D3</string>
+				<string>E11923E61CA5E6620054D8D3</string>
+				<string>E11923E91CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DocChatMD</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923DD1CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923DE1CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923DD1CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923DF1CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DocChatViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E01CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923DF1CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923E11CA5E6620054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923E21CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E21CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E31CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923E11CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923E41CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E51CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923E41CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923E61CA5E6620054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923E71CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E71CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923E81CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923E61CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923E91CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923EA1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E11924031CA5EBDC0054D8D3</string>
+				<string>E119240F1CA5EF100054D8D3</string>
+				<string>E11923F31CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923EB1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923EC1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E11923ED1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E11923FA1CA5E6620054D8D3</string>
+			<key>buildPhases</key>
+			<array>
+				<string>E11923EA1CA5E6620054D8D3</string>
+				<string>E11923EB1CA5E6620054D8D3</string>
+				<string>E11923EC1CA5E6620054D8D3</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>E11923F01CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>DocChatMDTests</string>
+			<key>productName</key>
+			<string>DocChatMDTests</string>
+			<key>productReference</key>
+			<string>E11923EE1CA5E6620054D8D3</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>E11923EE1CA5E6620054D8D3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>DocChatMDTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E11923EF1CA5E6620054D8D3</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>E11923D21CA5E6610054D8D3</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E11923D91CA5E6610054D8D3</string>
+			<key>remoteInfo</key>
+			<string>DocChatMD</string>
+		</dict>
+		<key>E11923F01CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>E11923D91CA5E6610054D8D3</string>
+			<key>targetProxy</key>
+			<string>E11923EF1CA5E6620054D8D3</string>
+		</dict>
+		<key>E11923F11CA5E6620054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11923F21CA5E6620054D8D3</string>
+				<string>E11924021CA5EBDC0054D8D3</string>
+				<string>E119240E1CA5EF100054D8D3</string>
+				<string>E11923F41CA5E6620054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>DocChatMDTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923F21CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DocChatMDTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923F31CA5E6620054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11923F21CA5E6620054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11923F41CA5E6620054D8D3</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923F51CA5E6620054D8D3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E11923F61CA5E6620054D8D3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E11923F71CA5E6620054D8D3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E11923F81CA5E6620054D8D3</string>
+				<string>E11923F91CA5E6620054D8D3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E11923F81CA5E6620054D8D3</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F8DEF8D952AAF98882BD337B</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DocChatMD/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.magicnoodles.DocChatMD</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E11923F91CA5E6620054D8D3</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>298FE253FFB96B50B84A2CD8</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DocChatMD/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.magicnoodles.DocChatMD</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E11923FA1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E11923FB1CA5E6620054D8D3</string>
+				<string>E11923FC1CA5E6620054D8D3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E11923FB1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DocChatMDTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.magicnoodles.DocChatMDTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E11923FC1CA5E6620054D8D3</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>INFOPLIST_FILE</key>
+				<string>DocChatMDTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.magicnoodles.DocChatMDTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E11923FD1CA5E68C0054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11924121CA8DA250054D8D3</string>
+				<string>E11924101CA5EF730054D8D3</string>
+				<string>E11924141CA902580054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Models</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923FE1CA5E6930054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>UI</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11923FF1CA5E69A0054D8D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E11924041CA5ECCC0054D8D3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Datasources</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924021CA5EBDC0054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DocChatDatasourceTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924031CA5EBDC0054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11924021CA5EBDC0054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11924041CA5ECCC0054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AkiraDatasource.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924051CA5ECCC0054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11924041CA5ECCC0054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E119240E1CA5EF100054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DocChatModelFactoryTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E119240F1CA5EF100054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E119240E1CA5EF100054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11924101CA5EF730054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>OpenTokSessionModelFactory.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924111CA5EF740054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11924101CA5EF730054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11924121CA8DA250054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>OpenTokSessionModel.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924131CA8DA250054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11924121CA8DA250054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E11924141CA902580054D8D3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>OperationResultWrapper.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E11924151CA902580054D8D3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E11924141CA902580054D8D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E38260A5E24DCED88DB677DD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>F8DEF8D952AAF98882BD337B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-DocChatMD.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>E11923D21CA5E6610054D8D3</string>
+</dict>
+</plist>

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3427ABC66FB1628B733DFF62E8F058E234159FBC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3427ABC66FB1628B733DFF62E8F058E234159FBC" : 0,
+    "A6D08A74E9C9CF63501EEC886C95B829452CC0B3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "458984BD-C62B-4FB5-A8E3-2BA87EE42AF2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3427ABC66FB1628B733DFF62E8F058E234159FBC" : "DocChatMD\/",
+    "A6D08A74E9C9CF63501EEC886C95B829452CC0B3" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DocChatMD",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DocChatMD.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/heyCarla\/DocChatMD.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3427ABC66FB1628B733DFF62E8F058E234159FBC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:heyCarla\/docchat.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A6D08A74E9C9CF63501EEC886C95B829452CC0B3"
+    }
+  ]
+}
