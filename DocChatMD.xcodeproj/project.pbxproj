@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */; };
+		E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */; };
+		E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E11CA5E6620054D8D3 /* Main.storyboard */; };
+		E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E11923E41CA5E6620054D8D3 /* Assets.xcassets */; };
+		E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */; };
+		E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */; };
+		E11924031CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */; };
+		E11924051CA5ECCC0054D8D3 /* AkiraDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */; };
+		E119240F1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */; };
+		E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */; };
+		E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */; };
+		E11924151CA902580054D8D3 /* OperationResultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924141CA902580054D8D3 /* OperationResultWrapper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E11923EF1CA5E6620054D8D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E11923D21CA5E6610054D8D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E11923D91CA5E6610054D8D3;
+			remoteInfo = DocChatMD;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E11923DA1CA5E6610054D8D3 /* DocChatMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocChatMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatViewController.swift; sourceTree = "<group>"; };
+		E11923E21CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E11923E41CA5E6620054D8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E11923E71CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E11923E91CA5E6620054D8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DocChatMDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatMDTests.swift; sourceTree = "<group>"; };
+		E11923F41CA5E6620054D8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatDatasourceTests.swift; sourceTree = "<group>"; };
+		E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraDatasource.swift; sourceTree = "<group>"; };
+		E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatModelFactoryTests.swift; sourceTree = "<group>"; };
+		E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModelFactory.swift; sourceTree = "<group>"; };
+		E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModel.swift; sourceTree = "<group>"; };
+		E11924141CA902580054D8D3 /* OperationResultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationResultWrapper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E11923D71CA5E6610054D8D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E11923EB1CA5E6620054D8D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E11923D11CA5E6610054D8D3 = {
+			isa = PBXGroup;
+			children = (
+				E11923DC1CA5E6620054D8D3 /* DocChatMD */,
+				E11923F11CA5E6620054D8D3 /* DocChatMDTests */,
+				E11923DB1CA5E6610054D8D3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E11923DB1CA5E6610054D8D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E11923DA1CA5E6610054D8D3 /* DocChatMD.app */,
+				E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E11923DC1CA5E6620054D8D3 /* DocChatMD */ = {
+			isa = PBXGroup;
+			children = (
+				E11923FF1CA5E69A0054D8D3 /* Datasources */,
+				E11923FD1CA5E68C0054D8D3 /* Models */,
+				E11923FE1CA5E6930054D8D3 /* UI */,
+				E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */,
+				E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */,
+				E11923E11CA5E6620054D8D3 /* Main.storyboard */,
+				E11923E41CA5E6620054D8D3 /* Assets.xcassets */,
+				E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */,
+				E11923E91CA5E6620054D8D3 /* Info.plist */,
+			);
+			path = DocChatMD;
+			sourceTree = "<group>";
+		};
+		E11923F11CA5E6620054D8D3 /* DocChatMDTests */ = {
+			isa = PBXGroup;
+			children = (
+				E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */,
+				E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */,
+				E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */,
+				E11923F41CA5E6620054D8D3 /* Info.plist */,
+			);
+			path = DocChatMDTests;
+			sourceTree = "<group>";
+		};
+		E11923FD1CA5E68C0054D8D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */,
+				E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */,
+				E11924141CA902580054D8D3 /* OperationResultWrapper.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E11923FE1CA5E6930054D8D3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		E11923FF1CA5E69A0054D8D3 /* Datasources */ = {
+			isa = PBXGroup;
+			children = (
+				E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */,
+			);
+			name = Datasources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E11923D91CA5E6610054D8D3 /* DocChatMD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E11923F71CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMD" */;
+			buildPhases = (
+				E11923D61CA5E6610054D8D3 /* Sources */,
+				E11923D71CA5E6610054D8D3 /* Frameworks */,
+				E11923D81CA5E6610054D8D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DocChatMD;
+			productName = DocChatMD;
+			productReference = E11923DA1CA5E6610054D8D3 /* DocChatMD.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E11923ED1CA5E6620054D8D3 /* DocChatMDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E11923FA1CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMDTests" */;
+			buildPhases = (
+				E11923EA1CA5E6620054D8D3 /* Sources */,
+				E11923EB1CA5E6620054D8D3 /* Frameworks */,
+				E11923EC1CA5E6620054D8D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E11923F01CA5E6620054D8D3 /* PBXTargetDependency */,
+			);
+			name = DocChatMDTests;
+			productName = DocChatMDTests;
+			productReference = E11923EE1CA5E6620054D8D3 /* DocChatMDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E11923D21CA5E6610054D8D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = MagicNoodles;
+				TargetAttributes = {
+					E11923D91CA5E6610054D8D3 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					E11923ED1CA5E6620054D8D3 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = E11923D91CA5E6610054D8D3;
+					};
+				};
+			};
+			buildConfigurationList = E11923D51CA5E6610054D8D3 /* Build configuration list for PBXProject "DocChatMD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E11923D11CA5E6610054D8D3;
+			productRefGroup = E11923DB1CA5E6610054D8D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E11923D91CA5E6610054D8D3 /* DocChatMD */,
+				E11923ED1CA5E6620054D8D3 /* DocChatMDTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E11923D81CA5E6610054D8D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */,
+				E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */,
+				E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E11923EC1CA5E6620054D8D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E11923D61CA5E6610054D8D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E11924151CA902580054D8D3 /* OperationResultWrapper.swift in Sources */,
+				E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */,
+				E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */,
+				E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */,
+				E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */,
+				E11924051CA5ECCC0054D8D3 /* AkiraDatasource.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E11923EA1CA5E6620054D8D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E11924031CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift in Sources */,
+				E119240F1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift in Sources */,
+				E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E11923F01CA5E6620054D8D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E11923D91CA5E6610054D8D3 /* DocChatMD */;
+			targetProxy = E11923EF1CA5E6620054D8D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E11923E11CA5E6620054D8D3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E11923E21CA5E6620054D8D3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E11923E71CA5E6620054D8D3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E11923F51CA5E6620054D8D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E11923F61CA5E6620054D8D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E11923F81CA5E6620054D8D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DocChatMD/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E11923F91CA5E6620054D8D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = DocChatMD/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E11923FB1CA5E6620054D8D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DocChatMDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD";
+			};
+			name = Debug;
+		};
+		E11923FC1CA5E6620054D8D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = DocChatMDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMDTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DocChatMD.app/DocChatMD";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E11923D51CA5E6610054D8D3 /* Build configuration list for PBXProject "DocChatMD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E11923F51CA5E6620054D8D3 /* Debug */,
+				E11923F61CA5E6620054D8D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E11923F71CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E11923F81CA5E6620054D8D3 /* Debug */,
+				E11923F91CA5E6620054D8D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E11923FA1CA5E6620054D8D3 /* Build configuration list for PBXNativeTarget "DocChatMDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E11923FB1CA5E6620054D8D3 /* Debug */,
+				E11923FC1CA5E6620054D8D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E11923D21CA5E6610054D8D3 /* Project object */;
+}
