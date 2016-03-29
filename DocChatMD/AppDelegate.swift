@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        // make OpenTok session id request on launch
-        _ = AkiraDatasource().openTokSessionIdRequest({ (sessionModel) in
-            
-            print(sessionModel)
-        })
+//        // make OpenTok session id request on launch
+//        _ = AkiraDatasource().openTokSessionIdRequest({ (sessionModel) in
+//            
+//            print(sessionModel)
+//        })
         
         return true
     }

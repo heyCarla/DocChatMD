@@ -20,8 +20,10 @@
 		E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */; };
 		E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */; };
 		E11924151CA902580054D8D3 /* OperationResultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11924141CA902580054D8D3 /* OperationResultWrapper.swift */; };
-		E1DB85FB1CA9F8EE00CA66BA /* VideoChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB85FA1CA9F8EE00CA66BA /* VideoChatView.swift */; };
-		E1DB85FD1CA9F8F500CA66BA /* TextChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB85FC1CA9F8F500CA66BA /* TextChatView.swift */; };
+		E1DB86061CAA66BC00CA66BA /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */; };
+		E1DB86081CAA66C600CA66BA /* TextChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */; };
+		E1DB860A1CAA94CB00CA66BA /* OpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86091CAA94CB00CA66BA /* OpenTokController.swift */; };
+		E1DB860C1CAB32E000CA66BA /* OpenTokTextChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB860B1CAB32E000CA66BA /* OpenTokTextChatController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,9 +55,11 @@
 		E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModelFactory.swift; sourceTree = "<group>"; };
 		E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokSessionModel.swift; sourceTree = "<group>"; };
 		E11924141CA902580054D8D3 /* OperationResultWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationResultWrapper.swift; sourceTree = "<group>"; };
-		E1DB85FA1CA9F8EE00CA66BA /* VideoChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoChatView.swift; sourceTree = "<group>"; };
-		E1DB85FC1CA9F8F500CA66BA /* TextChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextChatView.swift; sourceTree = "<group>"; };
 		E1DB85FE1CA9FBA700CA66BA /* DocChatMD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DocChatMD-Bridging-Header.h"; sourceTree = "<group>"; };
+		E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoChatViewController.swift; sourceTree = "<group>"; };
+		E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextChatViewController.swift; sourceTree = "<group>"; };
+		E1DB86091CAA94CB00CA66BA /* OpenTokController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokController.swift; sourceTree = "<group>"; };
+		E1DB860B1CAB32E000CA66BA /* OpenTokTextChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenTokTextChatController.swift; sourceTree = "<group>"; };
 		F8DEF8D952AAF98882BD337B /* Pods-DocChatMD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocChatMD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,8 +160,10 @@
 		E11923FE1CA5E6930054D8D3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				E1DB85FA1CA9F8EE00CA66BA /* VideoChatView.swift */,
-				E1DB85FC1CA9F8F500CA66BA /* TextChatView.swift */,
+				E1DB86091CAA94CB00CA66BA /* OpenTokController.swift */,
+				E1DB860B1CAB32E000CA66BA /* OpenTokTextChatController.swift */,
+				E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */,
+				E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -326,10 +332,12 @@
 				E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */,
 				E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */,
 				E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */,
-				E1DB85FB1CA9F8EE00CA66BA /* VideoChatView.swift in Sources */,
-				E1DB85FD1CA9F8F500CA66BA /* TextChatView.swift in Sources */,
 				E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */,
+				E1DB860C1CAB32E000CA66BA /* OpenTokTextChatController.swift in Sources */,
+				E1DB86081CAA66C600CA66BA /* TextChatViewController.swift in Sources */,
 				E11924051CA5ECCC0054D8D3 /* AkiraDatasource.swift in Sources */,
+				E1DB86061CAA66BC00CA66BA /* VideoChatViewController.swift in Sources */,
+				E1DB860A1CAA94CB00CA66BA /* OpenTokController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,12 +472,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DocChatMD/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DocChatMD/DocChatMD-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -479,11 +490,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DocChatMD/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.magicnoodles.DocChatMD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "DocChatMD/DocChatMD-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

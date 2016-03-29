@@ -9,11 +9,23 @@
 import UIKit
 
 final class DocChatViewController: UIViewController {
+    
+    private lazy var videoViewController: VideoChatViewController = {
+        return VideoChatViewController()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        displayVideoChatController()
     }
 
+    private func displayVideoChatController() {
+        
+        self.view.addSubview(videoViewController.view)
+    }
+    
+//    deinit{
+//        print("DocChatViewController Deinit")
+//    }
 }
-
