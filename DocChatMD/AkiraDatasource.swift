@@ -29,7 +29,6 @@ struct AkiraDatasource {
             switch dataResult {
             case .success(let data):
                 
-                print(data)
                 let sessionResult = OpenTokSessionModelFactory().openTokSessionIdWithData(data)
         
                 guard let sessionId = sessionResult.value() else {
@@ -39,12 +38,15 @@ struct AkiraDatasource {
                     return
                 }
                 
-                self.requestOpenTokSessionTokenWithSessionId(sessionId, completion: { (dataResult) in
+                // for the purposes of this test, using hard-coded session id as mentioned in requirements
+                let hardcodedSessionId = "2_MX40NTMxNjU0Mn5-MTQ1OTIzMjg5ODI5MH41WWtrSzFNdVg3NEZhYUVlYW9ybjAyc3R-UH4"
+                
+                self.requestOpenTokSessionTokenWithSessionId(hardcodedSessionId, completion: { (dataResult) in
                     
                     switch dataResult {
                     case .success(let data):
                         
-                        print(data)
+//                        print(data)
                         
                         guard let sessionToken = OpenTokSessionModelFactory().openTokSessionTokenWithData(data).value() else {
                             
