@@ -8,8 +8,8 @@
 
 import Foundation
 
-typealias SessionCompletion = (session: OTSession?) -> Void
-typealias MessageReceivedClosure = (message: String?, isLocal: Bool) -> Void
+typealias SessionCompletion         = (session: OTSession?) -> Void
+typealias MessageReceivedClosure    = (message: String?, isLocal: Bool) -> Void
 
 final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate {
     
