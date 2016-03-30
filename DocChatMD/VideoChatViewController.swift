@@ -20,31 +20,27 @@ final class VideoChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .blueColor()
-        
-        // run new instance of OpenTok session
-        openTokController.connectToOTSession { session in
-            
-            guard let openTokSession = session else {
-                
-                // TODO: handle result/error
-                return
-            }
-            
-            self.displayPublisherViewFromSession(openTokSession)
-        }
+        self.view.backgroundColor = .blueColor()        
     }
     
-    func displayPublisherViewFromSession(session: OTSession) {
+    func displayPublisherViewFromSession(session: OTSession?) {
         
-        guard let publisher = openTokController.createOTPublisher() else {
-            
+        guard let currentSession = session else {
+         
+            print("invalid session")
             // TODO: handle result/error
             return
         }
         
-        openTokController.addPublisherToSession(session, publisher: publisher)
-        self.view.addSubview(publisher.view)
+        guard let publisher = openTokController.createOTPublisher() else {
+            
+            print("invalid publisher")
+            // TODO: handle result/error
+            return
+        }
+        
+        openTokController.addPublisherToSession(currentSession, publisher: publisher)
+//        self.view.addSubview(publisher.view)
         
         // TODO: properly layout video frame ***
         

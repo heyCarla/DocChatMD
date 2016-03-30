@@ -9,11 +9,13 @@
 import Foundation
 
 typealias SessionCompletion = (session: OTSession?) -> Void
+typealias MessageReceivedClosure = (message: String?, isLocal: Bool) -> Void
 
 final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate {
     
+    
+    var messageReceivedClosure: MessageReceivedClosure?
     var session: OTSession?
-//    var publisher: OTPublisher?
     var subscriber: OTSubscriber?
     let subscribeToSelf = false
     private var sessionConnectionCompletion: SessionCompletion?
@@ -101,6 +103,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         }
     }
     
+    
     // MARK: OTSession Delegate Method(s)
     
     func sessionDidConnect(session: OTSession!) {
@@ -143,40 +146,50 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
     
     func session(session: OTSession, didFailWithError error: OTError) {
-        print("session didFailWithError (%@)", error)
+        print("session didFailWithError \(error)")
+    }
+    
+    // CHAT-SPECIFIC METHOD
+    func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
+        
+        // log messages sent to the user (isLocalClient)
+        //print("received signal: \(string)")
+        var isLocalClient = false
+        
+        if connection.connectionId == session.connection.connectionId {
+            isLocalClient = true
+        }
+        
+        messageReceivedClosure?(message: string, isLocal: isLocalClient)
     }
     
     
     // MARK: OTSubcsriberDelegate Method(s)
     
     func subscriberDidConnectToStream(subscriberKit: OTSubscriberKit) {
-        print("subscriberDidConnectToStream (\(subscriberKit))")
+        print("subscriberDidConnectToStream \(subscriberKit)")
         
         let videoChatController = VideoChatViewController()
         videoChatController.displaySubscriberViewWithSubscriber(self.subscriber!)
     }
     
     func subscriber(subscriber: OTSubscriberKit, didFailWithError error : OTError) {
-        print("subscriber %@ didFailWithError %@", subscriber.stream.streamId, error)
+        print("subscriber \(subscriber.stream.streamId) didFailWithError\(error)")
     }
     
     
     // MARK: OTPublisherDelegate Method(s)
     
     func publisher(publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        print("publisher streamCreated %@", stream)
+        print("publisher streamCreated \(stream)")
         
-        // Step 3b: (if YES == subscribeToSelf): Our own publisher is now visible to
-        // all participants in the OpenTok session. We will attempt to subscribe to
-        // our own stream. Expect to see a slight delay in the subscriber video and
-        // an echo of the audio coming from the device microphone.
         if subscriber == nil && subscribeToSelf {
             startSubscriberOfStream(stream)
         }
     }
     
     func publisher(publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
-        print("publisher streamDestroyed %@", stream)
+        print("publisher streamDestroyed \(stream)")
         
         if subscriber?.stream.streamId == stream.streamId {
             removeSubscriberFromSession(stream.session)
@@ -184,6 +197,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
     
     func publisher(publisher: OTPublisherKit, didFailWithError error: OTError) {
-        print("publisher didFailWithError %@", error)
+        print("publisher didFailWithError \(error)")
     }
 }
