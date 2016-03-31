@@ -23,6 +23,12 @@ final class VideoChatViewController: UIViewController {
     private let videoSettingsButton     = UIButton(frame: CGRectZero)
     private var buttonsHidden           = true
     
+    private var frontCameraLeftConstraint: Constraint?
+    private var audioTopConstraint: Constraint?
+    private var audioLeftConstraint: Constraint?
+    private var endVideoLeftConstraint: Constraint?
+    private var endVideoBottomConstraint: Constraint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,10 +52,6 @@ final class VideoChatViewController: UIViewController {
     
     private func createVideoButtons() {
         
-        videoSettingsButton.backgroundColor = .grayColor()
-        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
-        publisherView.addSubview(videoSettingsButton)
-
         publisherAudioButton.backgroundColor    = .yellowColor()
         publisherAudioButton.alpha              = 0
         publisherAudioButton.addTarget(self, action: #selector(togglePublisherMic), forControlEvents: .TouchUpInside)
@@ -64,6 +66,11 @@ final class VideoChatViewController: UIViewController {
         endVideoButton.alpha            = 0
         endVideoButton.addTarget(self, action: #selector(endVideoChat), forControlEvents: .TouchUpInside)
         publisherView.addSubview(endVideoButton)
+        
+        videoSettingsButton.backgroundColor = .grayColor()
+        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+        publisherView.addSubview(videoSettingsButton)
+
     }
     
     private func layoutViewElements() {
@@ -86,7 +93,8 @@ final class VideoChatViewController: UIViewController {
             
             if subscriberView.hidden == true {
                 
-                make.right.bottom.equalTo(subscriberView)
+                //make.right.bottom.equalTo(subscriberView)
+                make.left.centerY.equalTo(subscriberView).inset(UIEdgeInsetsMake(0, -30, 0, 0))
                 
             } else {
                 
@@ -99,22 +107,24 @@ final class VideoChatViewController: UIViewController {
 
     private func resetButtonConstraints() {
         
-        publisherAudioButton.snp_makeConstraints { (make) in
+        publisherAudioButton.snp_makeConstraints { make in
             
-            make.size.equalTo(videoSettingsButton)
-            make.edges.equalTo(videoSettingsButton)
+            make.left.right.width.height.equalTo(videoSettingsButton)
+            self.audioLeftConstraint    = make.left.equalTo(videoSettingsButton).offset(0).constraint
+            self.audioTopConstraint     = make.top.equalTo(videoSettingsButton).offset(0).constraint
         }
         
-        frontCameraButton.snp_makeConstraints { (make) in
-            
-            make.size.equalTo(videoSettingsButton)
-            make.edges.equalTo(videoSettingsButton)
+        frontCameraButton.snp_makeConstraints { make in
+
+            make.top.bottom.width.equalTo(videoSettingsButton)
+            self.frontCameraLeftConstraint = make.left.equalTo(videoSettingsButton).offset(0).constraint
         }
         
-        endVideoButton.snp_makeConstraints { (make) in
+        endVideoButton.snp_makeConstraints { make in
             
-            make.size.equalTo(videoSettingsButton)
-            make.edges.equalTo(videoSettingsButton)
+            make.left.right.height.equalTo(videoSettingsButton)
+            self.endVideoBottomConstraint   = make.bottom.equalTo(videoSettingsButton).offset(0).constraint
+            self.endVideoLeftConstraint     = make.left.equalTo(videoSettingsButton).offset(0).constraint
         }
         
         buttonsHidden = true
@@ -124,45 +134,44 @@ final class VideoChatViewController: UIViewController {
         
         if areButtonsHidden == true {
             
-            UIView.animateWithDuration(1.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            let buttonOffset: CGFloat   = 10
+            let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
+            
+            // update constraints
+            self.frontCameraLeftConstraint!.updateOffset(-leftOffset)
+            self.audioLeftConstraint!.updateOffset(-(leftOffset/2))
+            self.audioTopConstraint!.updateOffset(-leftOffset)
+//            self.endVideoLeftConstraint!.updateOffset(-leftOffset)
+//            self.endVideoBottomConstraint!.updateOffset(-(leftOffset/2))
+            
+            publisherView.setNeedsUpdateConstraints()
+            
+            UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
                 
-                let buttonOffset: CGFloat   = 10
-                let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
+                self.publisherView.layoutIfNeeded()
                 
-                self.frontCameraButton.alpha     = 1
-                self.publisherAudioButton.alpha  = 1
-                self.endVideoButton.alpha        = 1
-
-                self.frontCameraButton.snp_updateConstraints { (make) in
-                    make.left.equalTo(self.videoSettingsButton).inset(UIEdgeInsetsMake(0, -leftOffset, 0, 0))
-                }
-                
-                self.publisherAudioButton.snp_updateConstraints(closure: { (make) in
-                    make.left.top.equalTo(self.videoSettingsButton).inset(UIEdgeInsetsMake(-leftOffset, -(leftOffset/2), 0, 0))
-                })
-                
-                // TODO: fix oddly positioned end video button ***
-                
-                self.endVideoButton.snp_updateConstraints(closure: { (make) in
-                    make.left.equalTo(self.videoSettingsButton).inset(UIEdgeInsetsMake(0, -(leftOffset/2), 0, 0))
-                    make.bottom.greaterThanOrEqualTo(self.videoSettingsButton).inset(UIEdgeInsetsMake(0, 0, leftOffset, 0))
-                })
-                
-                self.buttonsHidden = false
+                self.frontCameraButton.alpha    = 1
+                self.publisherAudioButton.alpha = 1
+                self.endVideoButton.alpha       = 1
+                self.buttonsHidden              = false
                 
             }, completion: nil)
         
         } else {
             
+//            self.frontCameraLeftConstraint!.updateOffset(0)
+//            self.audioLeftConstraint!.updateOffset(0)
+//            self.audioTopConstraint!.updateOffset(0)
+
+            resetButtonConstraints()
+            publisherView.setNeedsUpdateConstraints()
+
             UIView.animateWithDuration(1.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
                 
                 self.frontCameraButton.alpha     = 0
                 self.publisherAudioButton.alpha  = 0
                 self.endVideoButton.alpha        = 0
-                
-                // reset the settings button
-                self.resetButtonConstraints()
-                
+
             }, completion: nil)
         }
      }
