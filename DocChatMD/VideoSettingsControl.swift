@@ -35,27 +35,25 @@ final class VideoSettingsControl: UIControl {
         }
         
         controlView = newView
-        //if controlView == view {
-           
-            publisherAudioButton.backgroundColor    = .yellowColor()
-            publisherAudioButton.alpha              = 0
-            publisherAudioButton.addTarget(self, action: #selector(togglePublisherMic), forControlEvents: .TouchUpInside)
-            controlView!.addSubview(publisherAudioButton)
-            
-            frontCameraButton.backgroundColor   = .orangeColor()
-            frontCameraButton.alpha             = 0
-            frontCameraButton.addTarget(self, action: #selector(toggleCameraPosition), forControlEvents: .TouchUpInside)
-            controlView!.addSubview(frontCameraButton)
-            
-            endVideoButton.backgroundColor  = .redColor()
-            endVideoButton.alpha            = 0
-            endVideoButton.addTarget(self, action: #selector(endVideoChat), forControlEvents: .TouchUpInside)
-            controlView!.addSubview(endVideoButton)
-            
-            videoSettingsButton.backgroundColor = .grayColor()
-            videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
-            controlView!.addSubview(videoSettingsButton)
-        //}
+        
+        publisherAudioButton.backgroundColor    = .yellowColor()
+        publisherAudioButton.alpha              = 0
+        publisherAudioButton.addTarget(self, action: #selector(togglePublisherMic), forControlEvents: .TouchUpInside)
+        controlView!.addSubview(publisherAudioButton)
+        
+        frontCameraButton.backgroundColor   = .orangeColor()
+        frontCameraButton.alpha             = 0
+        frontCameraButton.addTarget(self, action: #selector(toggleCameraPosition), forControlEvents: .TouchUpInside)
+        controlView!.addSubview(frontCameraButton)
+        
+        endVideoButton.backgroundColor  = .redColor()
+        endVideoButton.alpha            = 0
+        endVideoButton.addTarget(self, action: #selector(endVideoChat), forControlEvents: .TouchUpInside)
+        controlView!.addSubview(endVideoButton)
+        
+        videoSettingsButton.backgroundColor = .grayColor()
+        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+        controlView!.addSubview(videoSettingsButton)
     }
     
     func resetButtonConstraints() {
@@ -79,7 +77,7 @@ final class VideoSettingsControl: UIControl {
         
         endVideoButton.snp_makeConstraints { make in
             
-            make.left.right.height.equalTo(videoSettingsButton)
+            make.left.right.width.height.equalTo(videoSettingsButton)
             self.endVideoBottomConstraint   = make.bottom.equalTo(videoSettingsButton).offset(0).constraint
             self.endVideoLeftConstraint     = make.left.equalTo(videoSettingsButton).offset(0).constraint
         }
@@ -89,24 +87,22 @@ final class VideoSettingsControl: UIControl {
 
     private func animateButtonConstraintsInView(areButtonsHidden: Bool, view: UIView) {
         
+        let buttonOffset: CGFloat   = 10
+        let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
+
         if areButtonsHidden == true {
-            
-            let buttonOffset: CGFloat   = 10
-            let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
             
             // update constraints
             self.frontCameraLeftConstraint!.updateOffset(-leftOffset)
             self.audioLeftConstraint!.updateOffset(-(leftOffset/2))
             self.audioTopConstraint!.updateOffset(-leftOffset)
-            self.endVideoLeftConstraint!.updateOffset(-leftOffset)
-            self.endVideoBottomConstraint!.updateOffset(-(leftOffset/2))
+            self.endVideoLeftConstraint!.updateOffset(-(leftOffset/2))
+            self.endVideoBottomConstraint!.updateOffset(leftOffset)
             
-            //publisherView.setNeedsUpdateConstraints()
             view.setNeedsUpdateConstraints()
             
             UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
                 
-                //self.publisherView.layoutIfNeeded()
                 view.layoutIfNeeded()
                 self.frontCameraButton.alpha    = 1
                 self.publisherAudioButton.alpha = 1
@@ -117,15 +113,13 @@ final class VideoSettingsControl: UIControl {
             
         } else {
             
-//            self.frontCameraLeftConstraint!.updateOffset(0)
-//            self.audioLeftConstraint!.updateOffset(0)
-//            self.audioTopConstraint!.updateOffset(0)
-            
             resetButtonConstraints()
             view.setNeedsUpdateConstraints()
             
             UIView.animateWithDuration(1.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
                 
+                view.layoutIfNeeded()
+
                 self.frontCameraButton.alpha     = 0
                 self.publisherAudioButton.alpha  = 0
                 self.endVideoButton.alpha        = 0
