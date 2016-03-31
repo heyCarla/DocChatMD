@@ -22,15 +22,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "480990821.11397"
+            timestampString = "481103741.317443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "togglePublisherMic()"
             landmarkType = "5">
          </BreakpointContent>
@@ -38,15 +38,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "480990821.11397"
+            timestampString = "481103741.317443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "toggleCameraPosition()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,28 +58,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "480990821.11397"
+            timestampString = "481103741.317443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "toggleSubscriberAudio()"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "displaySubscriberViewWithSubscriber(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "480990821.11397"
+            filePath = "DocChatMD/OpenTokController.swift"
+            timestampString = "481101851.486883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "displayPublisherViewFromSession(_:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "startSubscriberOfStream(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocChatMD/OpenTokController.swift"
+            timestampString = "481101851.486883"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "session(_:streamCreated:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

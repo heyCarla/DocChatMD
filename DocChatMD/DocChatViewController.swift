@@ -23,7 +23,7 @@ final class DocChatViewController: UIViewController {
         super.viewDidLoad()
         
         displayVideoChatController()
-        displayTextChatController()
+//        displayTextChatController()
         connectToOpenTokSession()
     }
 
@@ -41,9 +41,9 @@ final class DocChatViewController: UIViewController {
             // enable video display
             self.videoViewController.displayPublisherViewFromSession(openTokSession)
             
-            // enable text messaging
-            self.textViewController.enableChatTextFieldForSession(openTokSession)
-            self.textViewController.updateWithController(self.openTokController)
+//            // enable text messaging
+//            self.textViewController.enableChatTextFieldForSession(openTokSession)
+//            self.textViewController.updateWithController(self.openTokController)
         }
     }
     
