@@ -1,18 +1,12 @@
 PODS:
-  - Atlas (1.0.20):
-    - LayerKit (>= 0.20.0)
-  - LayerKit (0.20.1)
   - OpenTok (2.7.1)
   - SnapKit (0.20.0)
 
 DEPENDENCIES:
-  - Atlas (~> 1.0)
   - OpenTok (~> 2.7)
   - SnapKit (~> 0.20)
 
 SPEC CHECKSUMS:
-  Atlas: e253e4ad4d7f9917bd16a66320c792f7b9971dc3
-  LayerKit: cb78097d6c77a9ee87c985401a8833bf557c1f62
   OpenTok: 990aade2dcea4ab90d26410efa2f96755e295051
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
 

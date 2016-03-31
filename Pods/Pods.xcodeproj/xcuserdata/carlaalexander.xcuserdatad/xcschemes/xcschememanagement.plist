@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Atlas-AtlasResource.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Atlas.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-DocChatMD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11A91B5D6477C52D122B4350DE467C02</key>
+		<key>0357DD8AD02B7394C9C7C0A703C2D11F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40F160B1EC87D07E1B9EE04FB13AB5F3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>63F552820D4533C96029EDF17F31A5C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>786CB22F164BE7CD32172CB1C14AC694</key>
+		<key>73E34DB9054F122A5FE34987C4CF6935</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -17,17 +17,19 @@ final class VideoChatViewController: UIViewController {
     private var publisherView       = UIView(frame: CGRectZero)
    
     // settings UI
-    private let publisherAudioButton    = UIButton(frame: CGRectZero)
-    private let frontCameraButton       = UIButton(frame: CGRectZero)
-    private let endVideoButton          = UIButton(frame: CGRectZero)
-    private let videoSettingsButton     = UIButton(frame: CGRectZero)
-    private var buttonsHidden           = true
+    private let settingsControl = VideoSettingsControl()
     
-    private var frontCameraLeftConstraint: Constraint?
-    private var audioTopConstraint: Constraint?
-    private var audioLeftConstraint: Constraint?
-    private var endVideoLeftConstraint: Constraint?
-    private var endVideoBottomConstraint: Constraint?
+//    private let publisherAudioButton    = UIButton(frame: CGRectZero)
+//    private let frontCameraButton       = UIButton(frame: CGRectZero)
+//    private let endVideoButton          = UIButton(frame: CGRectZero)
+//    private let videoSettingsButton     = UIButton(frame: CGRectZero)
+//    private var buttonsHidden           = true
+//    
+//    private var frontCameraLeftConstraint: Constraint?
+//    private var audioTopConstraint: Constraint?
+//    private var audioLeftConstraint: Constraint?
+//    private var endVideoLeftConstraint: Constraint?
+//    private var endVideoBottomConstraint: Constraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +52,27 @@ final class VideoChatViewController: UIViewController {
         publisherView.addSubview(subscriberView)
     }
     
-    private func createVideoButtons() {
-        
-        publisherAudioButton.backgroundColor    = .yellowColor()
-        publisherAudioButton.alpha              = 0
-        publisherAudioButton.addTarget(self, action: #selector(togglePublisherMic), forControlEvents: .TouchUpInside)
-        publisherView.addSubview(publisherAudioButton)
-
-        frontCameraButton.backgroundColor   = .orangeColor()
-        frontCameraButton.alpha             = 0
-        frontCameraButton.addTarget(self, action: #selector(toggleCameraPosition), forControlEvents: .TouchUpInside)
-        publisherView.addSubview(frontCameraButton)
-
-        endVideoButton.backgroundColor  = .redColor()
-        endVideoButton.alpha            = 0
-        endVideoButton.addTarget(self, action: #selector(endVideoChat), forControlEvents: .TouchUpInside)
-        publisherView.addSubview(endVideoButton)
-        
-        videoSettingsButton.backgroundColor = .grayColor()
-        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
-        publisherView.addSubview(videoSettingsButton)
-
-    }
+//    private func createVideoButtons() {
+//        
+//        publisherAudioButton.backgroundColor    = .yellowColor()
+//        publisherAudioButton.alpha              = 0
+//        publisherAudioButton.addTarget(self, action: #selector(togglePublisherMic), forControlEvents: .TouchUpInside)
+//        publisherView.addSubview(publisherAudioButton)
+//
+//        frontCameraButton.backgroundColor   = .orangeColor()
+//        frontCameraButton.alpha             = 0
+//        frontCameraButton.addTarget(self, action: #selector(toggleCameraPosition), forControlEvents: .TouchUpInside)
+//        publisherView.addSubview(frontCameraButton)
+//
+//        endVideoButton.backgroundColor  = .redColor()
+//        endVideoButton.alpha            = 0
+//        endVideoButton.addTarget(self, action: #selector(endVideoChat), forControlEvents: .TouchUpInside)
+//        publisherView.addSubview(endVideoButton)
+//        
+//        videoSettingsButton.backgroundColor = .grayColor()
+//        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+//        publisherView.addSubview(videoSettingsButton)
+//    }
     
     private func layoutViewElements() {
      
@@ -81,7 +82,7 @@ final class VideoChatViewController: UIViewController {
             make.right.bottom.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 10, 10))
         }
         
-        videoSettingsButton.snp_makeConstraints { (make) in
+        settingsControl.videoSettingsButton.snp_makeConstraints { (make) in
             
             make.width.height.equalTo(60)
             
@@ -102,79 +103,54 @@ final class VideoChatViewController: UIViewController {
             }
         }
         
-        resetButtonConstraints()
-    }
-
-    private func resetButtonConstraints() {
-        
-        publisherAudioButton.snp_makeConstraints { make in
-            
-            make.left.right.width.height.equalTo(videoSettingsButton)
-            self.audioLeftConstraint    = make.left.equalTo(videoSettingsButton).offset(0).constraint
-            self.audioTopConstraint     = make.top.equalTo(videoSettingsButton).offset(0).constraint
-        }
-        
-        frontCameraButton.snp_makeConstraints { make in
-
-            make.top.bottom.width.equalTo(videoSettingsButton)
-            self.frontCameraLeftConstraint = make.left.equalTo(videoSettingsButton).offset(0).constraint
-        }
-        
-        endVideoButton.snp_makeConstraints { make in
-            
-            make.left.right.height.equalTo(videoSettingsButton)
-            self.endVideoBottomConstraint   = make.bottom.equalTo(videoSettingsButton).offset(0).constraint
-            self.endVideoLeftConstraint     = make.left.equalTo(videoSettingsButton).offset(0).constraint
-        }
-        
-        buttonsHidden = true
+        settingsControl.resetButtonConstraints()
     }
     
-    private func animateButtonConstraints(areButtonsHidden: Bool) {
-        
-        if areButtonsHidden == true {
-            
-            let buttonOffset: CGFloat   = 10
-            let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
-            
-            // update constraints
-            self.frontCameraLeftConstraint!.updateOffset(-leftOffset)
-            self.audioLeftConstraint!.updateOffset(-(leftOffset/2))
-            self.audioTopConstraint!.updateOffset(-leftOffset)
-//            self.endVideoLeftConstraint!.updateOffset(-leftOffset)
-//            self.endVideoBottomConstraint!.updateOffset(-(leftOffset/2))
-            
-            publisherView.setNeedsUpdateConstraints()
-            
-            UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                
-                self.publisherView.layoutIfNeeded()
-                
-                self.frontCameraButton.alpha    = 1
-                self.publisherAudioButton.alpha = 1
-                self.endVideoButton.alpha       = 1
-                self.buttonsHidden              = false
-                
-            }, completion: nil)
-        
-        } else {
-            
-//            self.frontCameraLeftConstraint!.updateOffset(0)
-//            self.audioLeftConstraint!.updateOffset(0)
-//            self.audioTopConstraint!.updateOffset(0)
-
-            resetButtonConstraints()
-            publisherView.setNeedsUpdateConstraints()
-
-            UIView.animateWithDuration(1.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-                
-                self.frontCameraButton.alpha     = 0
-                self.publisherAudioButton.alpha  = 0
-                self.endVideoButton.alpha        = 0
-
-            }, completion: nil)
-        }
-     }
+//    private func animateButtonConstraints(areButtonsHidden: Bool) {
+//        
+//        if areButtonsHidden == true {
+//            
+//            let buttonOffset: CGFloat   = 10
+//            let leftOffset              = self.videoSettingsButton.frame.size.width + buttonOffset
+//            
+//            // update constraints
+//            self.frontCameraLeftConstraint!.updateOffset(-leftOffset)
+//            self.audioLeftConstraint!.updateOffset(-(leftOffset/2))
+//            self.audioTopConstraint!.updateOffset(-leftOffset)
+////            self.endVideoLeftConstraint!.updateOffset(-leftOffset)
+////            self.endVideoBottomConstraint!.updateOffset(-(leftOffset/2))
+//            
+//            publisherView.setNeedsUpdateConstraints()
+//            
+//            UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+//                
+//                self.publisherView.layoutIfNeeded()
+//                
+//                self.frontCameraButton.alpha    = 1
+//                self.publisherAudioButton.alpha = 1
+//                self.endVideoButton.alpha       = 1
+//                self.buttonsHidden              = false
+//                
+//            }, completion: nil)
+//        
+//        } else {
+//            
+////            self.frontCameraLeftConstraint!.updateOffset(0)
+////            self.audioLeftConstraint!.updateOffset(0)
+////            self.audioTopConstraint!.updateOffset(0)
+//
+//            resetButtonConstraints()
+//            publisherView.setNeedsUpdateConstraints()
+//
+//            UIView.animateWithDuration(1.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+//                
+//                self.frontCameraButton.alpha     = 0
+//                self.publisherAudioButton.alpha  = 0
+//                self.endVideoButton.alpha        = 0
+//
+//            }, completion: nil)
+//        }
+//     }
     
     
     // MARK: Video Session Display
@@ -200,7 +176,8 @@ final class VideoChatViewController: UIViewController {
         publisherView.hidden = false
         publisherView.addSubview(publisher.view)
 
-        createVideoButtons()
+        //createVideoButtons()
+        settingsControl.displayVideoButtonsInView(publisherView)
         layoutViewElements()
     }
     
@@ -221,43 +198,43 @@ final class VideoChatViewController: UIViewController {
     
     // MARK: Actions
     
-    func revealSettingsButtons() {
-        
-        videoSettingsButton.removeTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
-        videoSettingsButton.addTarget(self, action: #selector(hideSettingsButtons), forControlEvents: .TouchUpInside)
-        animateButtonConstraints(buttonsHidden)
-    }
-    
-    func hideSettingsButtons() {
-        
-        animateButtonConstraints(buttonsHidden)
-        videoSettingsButton.removeTarget(self, action: #selector(hideSettingsButtons), forControlEvents: .TouchUpInside)
-        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
-    }
-    
-    func togglePublisherMic() {
-        
-        print("toggle mic")
-//        publisher.publishAudio = !publisher.publishAudio
-        
-        // TODO: add button effects on controlstate change..
-    }
-    
-    func toggleCameraPosition() {
-        
-        print("toggle front/back camera")
-//        if publisher!.cameraPosition == .Front {
-//            publisher!.cameraPosition = .Back
-//        } else {
-//            publisher!.cameraPosition = .Front
-//        }
-    }
-    
-    func endVideoChat() {
-        
-        print("end video session")
-        // TODO: end openTok session
-    }
+//    func revealSettingsButtons() {
+//        
+//        videoSettingsButton.removeTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+//        videoSettingsButton.addTarget(self, action: #selector(hideSettingsButtons), forControlEvents: .TouchUpInside)
+//        animateButtonConstraints(buttonsHidden)
+//    }
+//    
+//    func hideSettingsButtons() {
+//        
+//        animateButtonConstraints(buttonsHidden)
+//        videoSettingsButton.removeTarget(self, action: #selector(hideSettingsButtons), forControlEvents: .TouchUpInside)
+//        videoSettingsButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+//    }
+//    
+//    func togglePublisherMic() {
+//        
+//        print("toggle mic")
+////        publisher.publishAudio = !publisher.publishAudio
+//        
+//        // TODO: add button effects on controlstate change..
+//    }
+//    
+//    func toggleCameraPosition() {
+//        
+//        print("toggle front/back camera")
+////        if publisher!.cameraPosition == .Front {
+////            publisher!.cameraPosition = .Back
+////        } else {
+////            publisher!.cameraPosition = .Front
+////        }
+//    }
+//    
+//    func endVideoChat() {
+//        
+//        print("end video session")
+//        // TODO: end openTok session
+//    }
 
 //    deinit{
 //        print("VideoChatVC Deinit")

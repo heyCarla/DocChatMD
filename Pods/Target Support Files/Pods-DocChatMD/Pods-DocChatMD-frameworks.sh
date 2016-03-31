@@ -84,12 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-DocChatMD/Atlas.framework"
-  install_framework "${PODS_ROOT}/LayerKit/LayerKit.framework"
   install_framework "Pods-DocChatMD/SnapKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-DocChatMD/Atlas.framework"
-  install_framework "${PODS_ROOT}/LayerKit/LayerKit.framework"
   install_framework "Pods-DocChatMD/SnapKit.framework"
 fi
