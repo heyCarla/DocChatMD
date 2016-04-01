@@ -164,9 +164,8 @@
 			children = (
 				E1DB86091CAA94CB00CA66BA /* OpenTokController.swift */,
 				E1DB860B1CAB32E000CA66BA /* OpenTokTextChatController.swift */,
-				E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */,
-				E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */,
-				E104997F1CAD565300695865 /* VideoSettingsControl.swift */,
+				E1C22F941CAE06FA004C540C /* Video */,
+				E1C22F951CAE0711004C540C /* Text */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -177,6 +176,23 @@
 				E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */,
 			);
 			name = Datasources;
+			sourceTree = "<group>";
+		};
+		E1C22F941CAE06FA004C540C /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */,
+				E104997F1CAD565300695865 /* VideoSettingsControl.swift */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		E1C22F951CAE0711004C540C /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */,
+			);
+			name = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
