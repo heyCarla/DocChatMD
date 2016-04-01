@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class VideoSettingsControl: UIControl {
+final class VideoSettingsControl: UIView {
     
     var controlView: UIView?
     
@@ -26,6 +26,18 @@ final class VideoSettingsControl: UIControl {
     private var audioLeftConstraint: Constraint?
     private var endVideoLeftConstraint: Constraint?
     private var endVideoBottomConstraint: Constraint?
+    
+    
+    // TODO: set intrinsic content size??
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func displayVideoButtonsInView(view: UIView?) {
         

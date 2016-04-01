@@ -11,7 +11,6 @@
 		E10499801CAD565300695865 /* VideoSettingsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E104997F1CAD565300695865 /* VideoSettingsControl.swift */; };
 		E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */; };
 		E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */; };
-		E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E11CA5E6620054D8D3 /* Main.storyboard */; };
 		E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E11923E41CA5E6620054D8D3 /* Assets.xcassets */; };
 		E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */; };
 		E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */; };
@@ -44,7 +43,6 @@
 		E11923DA1CA5E6610054D8D3 /* DocChatMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocChatMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatViewController.swift; sourceTree = "<group>"; };
-		E11923E21CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E11923E41CA5E6620054D8D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E11923E71CA5E6620054D8D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E11923E91CA5E6620054D8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				E11923FE1CA5E6930054D8D3 /* UI */,
 				E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */,
 				E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */,
-				E11923E11CA5E6620054D8D3 /* Main.storyboard */,
 				E11923E41CA5E6620054D8D3 /* Assets.xcassets */,
 				E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */,
 				E11923E91CA5E6620054D8D3 /* Info.plist */,
@@ -281,7 +278,6 @@
 			files = (
 				E11923E81CA5E6620054D8D3 /* LaunchScreen.storyboard in Resources */,
 				E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */,
-				E11923E31CA5E6620054D8D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,14 +378,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E11923E11CA5E6620054D8D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E11923E21CA5E6620054D8D3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E11923E61CA5E6620054D8D3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -22,8 +22,12 @@ final class DocChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // config. the navigation bar
+        title = "Doc Chat"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action: #selector(self.startTextChat))
+       
+        // create video and text chat views
         displayVideoChatController()
-        displayTextChatController()
         connectToOpenTokSession()
     }
 
@@ -44,21 +48,19 @@ final class DocChatViewController: UIViewController {
             // enable text messaging
             self.textViewController.enableTextChatInSession(openTokSession)
             self.textViewController.updateMessagesWithController(self.openTokController)
-//            self.textViewController.updateWithController(self.openTokController)
         }
     }
     
     private func displayVideoChatController() {
         
-        self.view.addSubview(videoViewController.view)
+        self.navigationController?.pushViewController(videoViewController, animated: true)
     }
+
     
-    private func displayTextChatController() {
-        
-        self.view.addSubview(textViewController.view)
+    // MARK: Actions
+    
+    func startTextChat() {
+     
+        self.navigationController?.pushViewController(textViewController, animated: true)
     }
-    
-//    deinit{
-//        print("DocChatViewController Deinit")
-//    }
 }
