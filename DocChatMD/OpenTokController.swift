@@ -153,7 +153,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
         
         // log messages sent to the user (isLocalClient)
-        //print("received signal: \(string)")
+        print("received signal: \(string)")
         var isLocalClient = false
         
         if connection.connectionId == session.connection.connectionId {

@@ -8,99 +8,120 @@
 
 import Foundation
 import UIKit
+import JSQMessagesViewController
 
-final class TextChatViewController: UIViewController, UITextFieldDelegate {
+final class TextChatViewController: JSQMessagesViewController {
     
-    let textField   = UITextField()
-    var textView    = UITextView()
     var currentSession: OTSession?
+    var messages = [JSQMessage]()
+    var outgoingBubbleImageView: JSQMessagesBubbleImage!
+    var incomingBubbleImageView: JSQMessagesBubbleImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        displayTextUIElements()
+        // JSQMessagesViewController requires a sender id and display name for use
+        self.senderId           = "localUser"
+        self.senderDisplayName  = ""
+        
+        setupBubbles()
     }
-
-    func enableChatTextFieldForSession(session: OTSession?) {
+    
+    
+    // MARK: OpenTok Session Methods
+    
+    func enableTextChatInSession(session: OTSession?) {
         
-        // TODO: adjust sizes w/ autolayout later x_x
-        
-        guard let newSession = session else {
+        guard let session = session else {
             
             print("something went wrong")
             // TODO: handle session/error
             return
         }
         
-        currentSession = newSession
-        
-        textField.becomeFirstResponder()
-        textField.userInteractionEnabled = true
+        currentSession = session
     }
     
-    func updateWithController(controller: OpenTokController) {
+    func updateMessagesWithController(controller: OpenTokController) {
         
         controller.messageReceivedClosure = { text, isLocal in
             
-            self.logSignalStringInTextView(text!, textView: self.textView, isLocalClient: isLocal)
-        }
-    }
-    
-    private func displayTextUIElements() {
-        
-        textField.delegate                  = self
-        textField.frame                     = CGRect(x: 0, y: 40, width: self.view.frame.width, height: 40)
-        textField.backgroundColor           = .yellowColor()
-        textField.userInteractionEnabled    = false
-        textField.returnKeyType             = .Done
-        self.view.addSubview(textField)
-        
-        textView.frame                  = CGRect(x: 0, y: textField.frame.origin.y+40, width: self.view.frame.width, height: 300)
-        textView.userInteractionEnabled = false
-        textView.backgroundColor        = .redColor()
-        self.view.addSubview(textView)
-    }
-
-    private func logSignalStringInTextView(string: String, textView: UITextView, isLocalClient: Bool) {
-        
-        let previousStringLength = textView.text.characters.count - 1
-        textView.insertText("\(string)\n")
-        
-        if isLocalClient {
+            guard let text = text else {
+                
+                // TODO: handle result/error
+                return
+            }
             
-            // change the colour of messages submitted by the local user
-            let formatDict: [String:UIColor]    = [NSForegroundColorAttributeName: .blueColor()]
-            let textRange                       = NSMakeRange(previousStringLength + 1, string.characters.count)
-            textView.textStorage.setAttributes(formatDict, range: textRange)
+            self.addMessage(self.senderId, text: text)
+            self.finishReceivingMessage()
         }
-        
-        textView.setContentOffset(textView.contentOffset, animated: false)
-        textView.scrollRangeToVisible(NSMakeRange(textView.text.characters.count, 0))
     }
     
     
-    // MARK: UITextFieldDelegate Method(s)
+    // MARK: JSQMessages Message Display Methods
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    private func setupBubbles() {
         
-        textField.text = ""
-        return true
+        let factory             = JSQMessagesBubbleImageFactory()
+        outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
+        incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         
-        guard let text = textField.text else {
-            
-            // TODO: handle error/result
-            return false
+        return messages[indexPath.item]
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return messages.count
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
+        
+        let message = messages[indexPath.item]
+       
+        if message.senderId == senderId {
+            return outgoingBubbleImageView
+        } else {
+            return incomingBubbleImageView
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
+        
+        let message = messages[indexPath.item]
+        
+        if message.senderId == senderId {
+            cell.textView!.textColor = UIColor.whiteColor()
+        } else {
+            cell.textView!.textColor = UIColor.blackColor()
         }
         
+        return cell
+    }
+    
+    override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
+        
+        return nil
+    }
+    
+        
+    // MARK: JSQMessages Message Generation & Delivery Methods
+ 
+    func addMessage(id: String, text: String) {
+        
+        let message = JSQMessage(senderId: id, displayName: "", text: text)
+        messages.append(message)
+    }
+        
+    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
+        
+        // send message through opentok session
         OpenTokTextChatController().sendChatMessageInSession(currentSession!, message: text)
-        
-        // reset the textfield for the next message
-        textField.text = ""
-        textField.resignFirstResponder()
-        
-        return true
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
     }
 }

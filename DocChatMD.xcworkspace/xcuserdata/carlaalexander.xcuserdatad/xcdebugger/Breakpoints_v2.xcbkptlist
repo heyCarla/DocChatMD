@@ -137,38 +137,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DocChatMD/TextChatViewController.swift"
-            timestampString = "481178912.744324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "didPressSendButton(_:withMessageText:senderId:senderDisplayName:date:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DocChatMD/TextChatViewController.swift"
-            timestampString = "481178912.744324"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "addMessage(_:text:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DocChatMD/OpenTokController.swift"
             timestampString = "481178873.7552"
             startingColumnNumber = "9223372036854775807"
@@ -177,54 +145,6 @@
             endingLineNumber = "157"
             landmarkName = "session(_:receivedSignalType:fromConnection:withString:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DocChatMD/TextChatViewController.swift"
-            timestampString = "481178790.799735"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "updateMessagesWithController(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DocChatMD.TextChatViewController.updateMessagesWithController (DocChatMD.OpenTokController) -&gt; ()"
-                  moduleName = "DocChatMD"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/TextChatViewController.swift"
-                  timestampString = "481179212.212648"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "108">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DocChatMD.TextChatViewController.(updateMessagesWithController (DocChatMD.OpenTokController) -&gt; ()).(closure #1)"
-                  moduleName = "DocChatMD"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/TextChatViewController.swift"
-                  timestampString = "481179212.212813"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
