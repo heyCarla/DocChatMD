@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C7F891258E990F518D9A2164 /* Pods_DocChatMD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2304BD855DAF3BE9464C9CC6 /* Pods_DocChatMD.framework */; };
-		E10499801CAD565300695865 /* VideoSettingsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E104997F1CAD565300695865 /* VideoSettingsControl.swift */; };
+		E10499801CAD565300695865 /* SettingsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E104997F1CAD565300695865 /* SettingsControl.swift */; };
 		E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */; };
 		E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */; };
 		E11923E51CA5E6620054D8D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E11923E41CA5E6620054D8D3 /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		2304BD855DAF3BE9464C9CC6 /* Pods_DocChatMD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DocChatMD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		298FE253FFB96B50B84A2CD8 /* Pods-DocChatMD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DocChatMD.release.xcconfig"; path = "Pods/Target Support Files/Pods-DocChatMD/Pods-DocChatMD.release.xcconfig"; sourceTree = "<group>"; };
-		E104997F1CAD565300695865 /* VideoSettingsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSettingsControl.swift; sourceTree = "<group>"; };
+		E104997F1CAD565300695865 /* SettingsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsControl.swift; sourceTree = "<group>"; };
 		E11923DA1CA5E6610054D8D3 /* DocChatMD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DocChatMD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocChatViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */,
-				E104997F1CAD565300695865 /* VideoSettingsControl.swift */,
+				E104997F1CAD565300695865 /* SettingsControl.swift */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 				E11923E01CA5E6620054D8D3 /* DocChatViewController.swift in Sources */,
 				E11923DE1CA5E6620054D8D3 /* AppDelegate.swift in Sources */,
 				E11924111CA5EF740054D8D3 /* OpenTokSessionModelFactory.swift in Sources */,
-				E10499801CAD565300695865 /* VideoSettingsControl.swift in Sources */,
+				E10499801CAD565300695865 /* SettingsControl.swift in Sources */,
 				E11924131CA8DA250054D8D3 /* OpenTokSessionModel.swift in Sources */,
 				E1DB860C1CAB32E000CA66BA /* OpenTokTextChatController.swift in Sources */,
 				E1DB86081CAA66C600CA66BA /* TextChatViewController.swift in Sources */,
