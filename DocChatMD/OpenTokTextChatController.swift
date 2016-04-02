@@ -16,7 +16,7 @@ final class OpenTokTextChatController: NSObject {
         session.signalWithType("chat", string: message, connection: nil, error: &openTokError)
         
         if let error = openTokError {
-            // TODO: handle error as result
+            print("open tok error: \(error)")
         } else {
             print("signal sent: \(message)")
         }

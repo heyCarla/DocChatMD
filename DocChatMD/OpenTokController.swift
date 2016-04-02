@@ -8,19 +8,38 @@
 
 import Foundation
 
-typealias SessionCompletion         = (session: OTSession?) -> Void
+enum OTSessionError: ErrorType {
+
+    case InvalidSession
+    case PublisherNotFound
+    case PublisherNotCreated
+    case SubscriberNotFound
+}
+
+//enum OTSessionErrorMessages: String {
+//    
+//    case InvalidSession
+//    case SubscriberNotAdded
+//    case SubsceriberNotRemoved
+//}
+
+typealias SessionCompletion         = (result: Result<OTSession>) -> Void
 typealias MessageReceivedClosure    = (message: String?, isLocal: Bool) -> Void
 
 final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate {
     
-    
-    var messageReceivedClosure: MessageReceivedClosure?
     var session: OTSession?
     var subscriber: OTSubscriber?
     let subscribeToSelf = false
+    var messageReceivedClosure: MessageReceivedClosure?
     private var sessionConnectionCompletion: SessionCompletion?
     
-    func connectToOTSession(completion: SessionCompletion) {
+    // error alerts
+    private var controllerView: UIViewController?
+    private let sessionAlertTitle   = "Video Chat Session Error"
+    private let actionTitle         = "OK"
+    
+    func connectToOTSessionFromController(controller: UIViewController, completion: SessionCompletion) {
         
         sessionConnectionCompletion = completion
         
@@ -36,22 +55,32 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
                 
                 if let error = openTokError {
                     
-                    // TODO: handle error as result
+                    if self.controllerView == controller {
+                    
+                    let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                    let okAction = UIAlertAction(title: self.actionTitle, style: UIAlertActionStyle.Default, handler: { action in
+                        
+                        alert.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                    
+                    alert.addAction(okAction)
+                    self.controllerView!.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
             }
         })
     }
     
     // create instance of OTPublisher
-    func createOTPublisher() -> OTPublisher? {
+    func createOTPublisher() -> Result<OTPublisher> {
         
         guard let publisher = OTPublisher(delegate: self) else {
             
-            // TODO: add error/result type
-            return nil
+            print("failed to create a publisher -- fail")
+            return Result.failure(error: OTSessionError.PublisherNotFound)
         }
         
-        return publisher
+        return Result.success(value: publisher)
     }
     
     func addPublisherToSession(session: OTSession, publisher: OTPublisher) {
@@ -60,20 +89,20 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         session.publish(publisher, error: &openTokError)
         
         if let error = openTokError {
-            // TODO: handle error as result
-        }
+            
+            let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)        }
     }
     
     // create instance of OTSubscriber
-    func startSubscriberOfStream(stream: OTStream) -> OTSubscriber? {
+    func startSubscriberOfStream(stream: OTStream) -> Result<OTSubscriber> {
         
         guard let subscriber = OTSubscriber(stream: stream, delegate: self) else {
             
-            // TODO: handle result/error
-            return nil
+            print("failed to start subscriber -- fail")
+            return Result.failure(error: OTSessionError.SubscriberNotFound)
         }
         
-        return subscriber
+        return Result.success(value: subscriber)
     }
     
     func addSubscriberToSession(session: OTSession, subscriber: OTSubscriber) {
@@ -82,10 +111,18 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         session.subscribe(subscriber, error: &openTokError)
         
         if let error = openTokError {
-            // TODO: handle error as result
+            
+            let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
+                
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            })
+            
+            alert.addAction(okAction)
+            self.controllerView!.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    
+
     // remove subscriber
     func removeSubscriberFromSession(session: OTSession) {
         
@@ -95,7 +132,15 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
             session.unsubscribe(subscriber, error: &openTokError)
             
             if let error = openTokError {
-                // TODO: handle error as result
+                
+                let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
+                    
+                    alert.dismissViewControllerAnimated(true, completion: nil)
+                })
+                
+                alert.addAction(okAction)
+                self.controllerView!.presentViewController(alert, animated: true, completion: nil)
             }
             
             subscriber.view.removeFromSuperview()
@@ -109,9 +154,10 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     func sessionDidConnect(session: OTSession!) {
         
         // only run sessionConnectionCompletion once
-        sessionConnectionCompletion?(session: session)
+        sessionConnectionCompletion?(result: Result.success(value: session))
         sessionConnectionCompletion = nil
-        print("session connected: \(session)")
+        
+//        print("session connected: \(session)")
     }
     
     func sessionDidDisconnect(session: OTSession!) {
@@ -121,8 +167,9 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     func session(session: OTSession!, streamCreated stream: OTStream!) {
         
         print("session stream created (\(stream.streamId))")
-        
+
         if subscriber == nil && !subscribeToSelf {
+            
             startSubscriberOfStream(stream)
             addSubscriberToSession(session, subscriber: subscriber!)
         }
@@ -149,11 +196,10 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         print("session didFailWithError \(error)")
     }
     
-    // CHAT-SPECIFIC METHOD
+    // chat-specific session delegate method
     func session(session: OTSession!, receivedSignalType type: String!, fromConnection connection: OTConnection!, withString string: String!) {
         
         // log messages sent to the user (isLocalClient)
-        print("received signal: \(string)")
         var isLocalClient = false
         
         if connection.connectionId == session.connection.connectionId {

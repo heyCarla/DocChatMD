@@ -46,8 +46,6 @@ struct AkiraDatasource {
                     switch dataResult {
                     case .success(let data):
                         
-//                        print(data)
-                        
                         guard let sessionToken = OpenTokSessionModelFactory().openTokSessionTokenWithData(data).value() else {
                             
                             // force unwrapped error because it's impossible for it to be nil in this Result where the value is nil

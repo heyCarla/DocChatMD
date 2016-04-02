@@ -9,7 +9,21 @@
 import Foundation
 import SnapKit
 
+enum VideoViewError: ErrorType {
+    
+    case PublisherViewNotFound
+    case SubscriberViewNotFound
+}
+
+typealias PublisherViewDisplayCompletion    = (result: Result<OTSession>) -> Void
+typealias PublisherCreationCompletion       = (result: Result<OTPublisher>) -> Void
+typealias SubscriberViewDisplayCompletion   = (result: Result<OTSession>) -> Void
+
 final class VideoChatViewController: UIViewController, SettingsControlDelegate {
+    
+    private var publisherViewDisplayCompletion: PublisherViewDisplayCompletion?
+    private var publisherCreationCompletion: PublisherCreationCompletion?
+    private var subscriberViewDisplayCompletion: SubscriberViewDisplayCompletion?
     
     private let openTokController   = OpenTokController()
     private let subscriberView      = UIView(frame: CGRectZero)
@@ -79,8 +93,8 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
         
         guard let currentSession = session else {
          
-            print("invalid session")
-            // TODO: handle result/error
+            publisherViewDisplayCompletion?(result: Result.failure(error: VideoViewError.PublisherViewNotFound))
+            publisherViewDisplayCompletion = nil
             return
         }
         
@@ -88,7 +102,7 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
             
         guard let publisher = publisherResult.value() else {
             
-            print("publisher error: \(publisherResult.error())")
+            PublisherCreationCompletion?(result: Result.failure(error: OTSessionError.PublisherNotCreated))
             return
         }
         
@@ -107,7 +121,8 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
         
         guard let newSubscriber = subscriber else {
             
-            // TODO: handle result/error
+            subscriberViewDisplayCompletion?(result: Result.failure(error: VideoViewError.SubscriberViewNotFound))
+            subscriberViewDisplayCompletion = nil
             return
         }
         
@@ -130,7 +145,6 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
         } else {
             publisher!.cameraPosition = .Front
         }
-
     }
 
     func buttonThreeAction() {

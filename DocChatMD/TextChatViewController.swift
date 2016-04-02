@@ -10,9 +10,21 @@ import Foundation
 import UIKit
 import JSQMessagesViewController
 
+enum TextChatError: ErrorType {
+    
+    case InvalidTextSession
+    case MessageNotUpdated
+}
+
+typealias SessionTextCompletion     = (result: Result<OTSession>) -> Void
+typealias UpdateMessagesCompletion  = (result: Result<UIViewController>) -> Void
+
 final class TextChatViewController: JSQMessagesViewController {
     
-    var currentSession: OTSession?
+    private var currentSession: OTSession?
+    private var sessionTextCompletion: SessionTextCompletion?
+    private var updateMessagesCompletion: UpdateMessagesCompletion?
+    
     var messages = [JSQMessage]()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
@@ -34,8 +46,8 @@ final class TextChatViewController: JSQMessagesViewController {
         
         guard let session = session else {
             
-            print("something went wrong")
-            // TODO: handle session/error
+            sessionTextCompletion?(result: Result.failure(error: TextChatError.InvalidTextSession))
+            sessionTextCompletion = nil
             return
         }
         
@@ -48,7 +60,8 @@ final class TextChatViewController: JSQMessagesViewController {
             
             guard let text = text else {
                 
-                // TODO: handle result/error
+                self.updateMessagesCompletion?(result: Result.failure(error: TextChatError.MessageNotUpdated))
+                self.updateMessagesCompletion = nil
                 return
             }
             
