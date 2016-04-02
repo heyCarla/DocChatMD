@@ -24,7 +24,7 @@ final class DocChatViewController: UIViewController {
         
         // config. the navigation bar
         title = "Doc Chat"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action: #selector(self.startTextChat))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
        
         // create video and text chat views
         displayVideoChatController()

@@ -9,16 +9,19 @@
 import Foundation
 import SnapKit
 
-final class VideoChatViewController: UIViewController {
+final class VideoChatViewController: UIViewController, SettingsControlDelegate {
     
     private let openTokController   = OpenTokController()
     private let subscriberView      = UIView(frame: CGRectZero)
     private var publisherView       = UIView(frame: CGRectZero)
-    private let settingsControl     = VideoSettingsControl()
+    private var publisher: OTPublisher?
+    private var settingsControl     = SettingsControl()
+    private var settingsControlDelegate: SettingsControlDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingsControlDelegate = self
         createVideoViews()
     }
     
@@ -46,7 +49,7 @@ final class VideoChatViewController: UIViewController {
             make.right.bottom.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 10, 10))
         }
         
-        settingsControl.videoSettingsButton.snp_makeConstraints { (make) in
+        settingsControl.mainButton.snp_makeConstraints { (make) in
             
             make.width.height.equalTo(60)
             
@@ -58,7 +61,7 @@ final class VideoChatViewController: UIViewController {
             
             if subscriberView.hidden == true {
                 
-                make.centerX.centerY.equalTo(subscriberView).inset(UIEdgeInsetsMake(-10, 0, 0, 0))
+                make.right.bottom.equalTo(subscriberView).inset(UIEdgeInsetsMake(0, 0, -5, -5))
                 
             } else {
                 
@@ -81,26 +84,26 @@ final class VideoChatViewController: UIViewController {
             return
         }
         
-        guard let publisher = openTokController.createOTPublisher() else {
+        let publisherResult = openTokController.createOTPublisher()
             
-            print("invalid publisher")
-            // TODO: handle result/error
+        guard let publisher = publisherResult.value() else {
+            
+            print("publisher error: \(publisherResult.error())")
             return
         }
+        
+        self.publisher = publisher
         
         openTokController.addPublisherToSession(currentSession, publisher: publisher)
         publisher.view.frame = publisherView.frame
         publisherView.hidden = false
         publisherView.addSubview(publisher.view)
 
-        //createVideoButtons()
-        settingsControl.displayVideoButtonsInView(publisherView)
+        settingsControl.displaySettingsButtonsInView(publisherView)
         layoutViewElements()
     }
-    
+
     func displaySubscriberViewWithSubscriber(subscriber: OTSubscriber?) {
-        
-        // TODO: un-hide subscriber
         
         guard let newSubscriber = subscriber else {
             
@@ -112,4 +115,27 @@ final class VideoChatViewController: UIViewController {
         subscriberView.addSubview(newSubscriber.view)
     }
 
+    
+    // MARK: SettingsControlDelegate Methods
+    
+    func buttonOneAction() {
+        
+        publisher!.publishAudio = !publisher!.publishAudio
+    }
+    
+    func buttonTwoAction() {
+        
+        if publisher!.cameraPosition == .Front {
+            publisher!.cameraPosition = .Back
+        } else {
+            publisher!.cameraPosition = .Front
+        }
+
+    }
+
+    func buttonThreeAction() {
+        
+        // TODO: end openTok session
+
+    }
 }
