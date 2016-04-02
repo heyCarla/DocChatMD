@@ -16,13 +16,6 @@ enum OTSessionError: ErrorType {
     case SubscriberNotFound
 }
 
-//enum OTSessionErrorMessages: String {
-//    
-//    case InvalidSession
-//    case SubscriberNotAdded
-//    case SubsceriberNotRemoved
-//}
-
 typealias SessionCompletion         = (result: Result<OTSession>) -> Void
 typealias MessageReceivedClosure    = (message: String?, isLocal: Bool) -> Void
 
@@ -146,6 +139,11 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
             subscriber.view.removeFromSuperview()
             self.subscriber = nil
         }
+    }
+    
+    func endCurrentOTSession() {
+        
+        sessionDidDisconnect(session)
     }
     
     

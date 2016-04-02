@@ -30,12 +30,11 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
     private var publisherView       = UIView(frame: CGRectZero)
     private var publisher: OTPublisher?
     private var settingsControl     = SettingsControl()
-    private var settingsControlDelegate: SettingsControlDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settingsControlDelegate = self
+        settingsControl.delegate = self
         createVideoViews()
     }
     
@@ -102,7 +101,8 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
             
         guard let publisher = publisherResult.value() else {
             
-            PublisherCreationCompletion?(result: Result.failure(error: OTSessionError.PublisherNotCreated))
+            publisherCreationCompletion?(result: Result.failure(error: OTSessionError.PublisherNotCreated))
+            publisherViewDisplayCompletion = nil
             return
         }
         
@@ -135,11 +135,13 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
     
     func buttonOneAction() {
         
+        // mute/unmute publisher audio
         publisher!.publishAudio = !publisher!.publishAudio
     }
     
     func buttonTwoAction() {
         
+        // toggle between front/back cameras
         if publisher!.cameraPosition == .Front {
             publisher!.cameraPosition = .Back
         } else {
@@ -149,7 +151,10 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
 
     func buttonThreeAction() {
         
-        // TODO: end openTok session
-
+        // end the openTok session
+        publisherView.removeFromSuperview()
+        subscriberView.removeFromSuperview()
+        
+        openTokController.endCurrentOTSession()
     }
 }

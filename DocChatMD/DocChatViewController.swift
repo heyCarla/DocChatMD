@@ -37,7 +37,7 @@ final class DocChatViewController: UIViewController {
 //        openTokController.connectToOTSession { sessionResult in
         openTokController.connectToOTSessionFromController(self) { sessionResult in
             
-            guard let openTokSession = sessionResult.error() else {
+            guard let openTokSession = sessionResult.value() else { // TEST ALERTS W/ .error()
                 
                 // display error alert
                 let alert = UIAlertController(title: "Video Chat Session Error", message: "Invalid session, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -53,12 +53,12 @@ final class DocChatViewController: UIViewController {
                 return
             }
             
-//            // enable video display
-//            self.videoViewController.displayPublisherViewFromSession(openTokSession)
-//            
-//            // enable text messaging
-//            self.textViewController.enableTextChatInSession(openTokSession)
-//            self.textViewController.updateMessagesWithController(self.openTokController)
+            // enable video display
+            self.videoViewController.displayPublisherViewFromSession(openTokSession)
+            
+            // enable text messaging
+            self.textViewController.enableTextChatInSession(openTokSession)
+            self.textViewController.updateMessagesWithController(self.openTokController)
         }
     }
     
