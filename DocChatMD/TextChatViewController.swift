@@ -36,7 +36,7 @@ final class TextChatViewController: JSQMessagesViewController {
         self.senderId           = "localUser"
         self.senderDisplayName  = ""
         
-        setupBubbles()
+        setupChatBubbles()
     }
     
     
@@ -71,14 +71,37 @@ final class TextChatViewController: JSQMessagesViewController {
     }
     
     
-    // MARK: JSQMessages Message Display Methods
+    // MARK: Message Display, Addition & Removal
     
-    private func setupBubbles() {
+    private func setupChatBubbles() {
         
         let factory             = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
+    
+    func addMessage(id: String, text: String) {
+        
+        let message = JSQMessage(senderId: id, displayName: "", text: text)
+        messages.append(message)
+    }
+    
+    func removePreviousChatMessages() {
+        
+        self.collectionView.performBatchUpdates({
+            
+            let indexPaths = self.collectionView.indexPathsForVisibleItems()
+            self.messages.removeAll()
+            self.collectionView.deleteItemsAtIndexPaths(indexPaths)
+            
+        }) { (Bool) in
+            
+            self.collectionView.reloadData()
+        }
+    }
+        
+    
+    // MARK: JSQMessagesViewController Overrides
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         
@@ -120,19 +143,10 @@ final class TextChatViewController: JSQMessagesViewController {
         
         return nil
     }
-    
-        
-    // MARK: JSQMessages Message Generation & Delivery Methods
- 
-    func addMessage(id: String, text: String) {
-        
-        let message = JSQMessage(senderId: id, displayName: "", text: text)
-        messages.append(message)
-    }
         
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
-        // send message through opentok session
+        // send message through OpenTok session
         OpenTokTextChatController().sendChatMessageInSession(currentSession!, message: text)
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
