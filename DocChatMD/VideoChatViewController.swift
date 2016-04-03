@@ -168,7 +168,13 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         // add a view to restart the session
         restartSessionView              = RestartSessionView(frame: self.view.frame)
         restartSessionView!.delegate    = self
+        restartSessionView!.alpha       = 0
         self.view.addSubview(restartSessionView!)
+        
+        UIView.animateWithDuration(0.3, animations: { 
+            
+            self.restartSessionView!.alpha = 1
+        }, completion: nil)
     }
     
     
@@ -176,7 +182,13 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     
     func restartSession() {
 
-        restartSessionView!.removeFromSuperview()
+        UIView.animateWithDuration(0.3, animations: { 
+            self.restartSessionView!.alpha = 0
+            
+        }) { (Bool) in
+            self.restartSessionView!.removeFromSuperview()
+        }
+        
         delegate?.restartSession()
     }
 }

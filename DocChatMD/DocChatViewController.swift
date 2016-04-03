@@ -72,8 +72,14 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     
     private func displayVideoChatController() {
         
-        videoViewController.delegate = self
+        videoViewController.delegate    = self
+        videoViewController.view.alpha  = 0
         self.view.addSubview(videoViewController.view)
+        
+        UIView.animateWithDuration(0.3, animations: {
+            
+            self.videoViewController.view.alpha = 1
+            }, completion: nil)
     }
 
     
