@@ -88,15 +88,18 @@ final class TextChatViewController: JSQMessagesViewController {
     
     func removePreviousChatMessages() {
         
-        self.collectionView.performBatchUpdates({
+        if messages.count >= 1 {
             
-            let indexPaths = self.collectionView.indexPathsForVisibleItems()
-            self.messages.removeAll()
-            self.collectionView.deleteItemsAtIndexPaths(indexPaths)
-            
-        }) { (Bool) in
-            
-            self.collectionView.reloadData()
+            self.collectionView.performBatchUpdates({
+                
+                let indexPaths = self.collectionView.indexPathsForVisibleItems()
+                self.messages.removeAll()
+                self.collectionView.deleteItemsAtIndexPaths(indexPaths)
+                
+            }) { (Bool) in
+                
+                self.collectionView.reloadData()
+            }
         }
     }
         

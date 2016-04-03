@@ -44,18 +44,18 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
 //        openTokController.connectToOTSession { sessionResult in
         openTokController.connectToOTSessionFromController(self) { sessionResult in
             
-            guard let openTokSession = sessionResult.value() else { // TODO: TEST ALERTS W/ .error() ******
+            guard let openTokSession = sessionResult.value() else {
                 
                 // display error alert
                 let alert = UIAlertController(title: "Video Chat Session Error", message: "Invalid session, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { action in
+                let okAction = UIAlertAction(title: "Reload", style: UIAlertActionStyle.Default, handler: { action in
                     
                     alert.dismissViewControllerAnimated(true, completion: nil)
+                    self.restartSession()
                 })
                 
                 alert.addAction(okAction)
                 self.presentViewController(alert, animated: true, completion: nil)
-                self.restartSession()
                 
                 return
             }
@@ -79,9 +79,8 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     
     // MARK: Actions
     
-    func startTextChat() {
+    internal func startTextChat() {
      
-//        textViewController = TextChatViewController()
         self.navigationController?.pushViewController(textViewController, animated: true)
     }
     
@@ -91,7 +90,6 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     func restartSession() {
         
         self.navigationItem.rightBarButtonItem = nil
-//        textViewController.view = nil
         textViewController.removePreviousChatMessages()
         
         displayVideoChatController()
