@@ -29,8 +29,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     
     // error alerts
     private var controllerView: UIViewController?
-    private let sessionAlertTitle   = "Video Chat Session Error"
-    private let actionTitle         = "OK"
     
     func connectToOTSessionFromController(controller: UIViewController, completion: SessionCompletion) {
         
@@ -49,15 +47,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
                 if let error = openTokError {
                     
                     if self.controllerView == controller {
-                    
-                    let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                    let okAction = UIAlertAction(title: self.actionTitle, style: UIAlertActionStyle.Default, handler: { action in
-                        
-                        alert.dismissViewControllerAnimated(true, completion: nil)
-                    })
-                    
-                    alert.addAction(okAction)
-                    self.controllerView!.presentViewController(alert, animated: true, completion: nil)
+                        self.displayAlertViewWithOTError(error)
                     }
                 }
             }
@@ -82,8 +72,8 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         session.publish(publisher, error: &openTokError)
         
         if let error = openTokError {
-            
-            let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)        }
+            displayAlertViewWithOTError(error)
+        }
     }
     
     // create instance of OTSubscriber
@@ -104,15 +94,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         session.subscribe(subscriber, error: &openTokError)
         
         if let error = openTokError {
-            
-            let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
-                
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            })
-            
-            alert.addAction(okAction)
-            self.controllerView!.presentViewController(alert, animated: true, completion: nil)
+            displayAlertViewWithOTError(error)
         }
     }
 
@@ -125,15 +107,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
             session.unsubscribe(subscriber, error: &openTokError)
             
             if let error = openTokError {
-                
-                let alert = UIAlertController(title: self.sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
-                    
-                    alert.dismissViewControllerAnimated(true, completion: nil)
-                })
-                
-                alert.addAction(okAction)
-                self.controllerView!.presentViewController(alert, animated: true, completion: nil)
+                displayAlertViewWithOTError(error)
             }
             
             subscriber.view.removeFromSuperview()
@@ -144,6 +118,24 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     func endCurrentOTSession() {
         
         sessionDidDisconnect(session)
+    }
+    
+    
+    // MARK: AlertView
+    
+    private func displayAlertViewWithOTError(error: OTError) {
+        
+        let sessionAlertTitle   = "Video Chat Session Error"
+        let actionTitle         = "OK"
+
+        let alert = UIAlertController(title: sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
+            
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        })
+        
+        alert.addAction(okAction)
+        self.controllerView!.presentViewController(alert, animated: true, completion: nil)
     }
     
     
