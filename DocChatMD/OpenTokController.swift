@@ -20,6 +20,7 @@ enum OTSessionError: ErrorType {
 
 typealias SessionCompletion             = (result: Result<OTSession>) -> Void
 typealias MessageReceivedClosure        = (message: String?, isLocal: Bool) -> Void
+typealias AddSubscriberCompletion       = (result: Result<OTSession>) -> Void
 typealias RemoveSubscriberCompletion    = (result: Result<OTSession>) -> Void
 typealias EndSessionCompletion          = (result: Result<OTSession>) -> Void
 
@@ -30,6 +31,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     private var subscriber: OTSubscriber?
     private let subscribeToSelf = false
     private var sessionConnectionCompletion: SessionCompletion?
+    private var addSubscriberCompletion: AddSubscriberCompletion?
     private var removeSubscriberCompletion: RemoveSubscriberCompletion?
     private var endSessionCompletion: EndSessionCompletion?
     var messageReceivedClosure: MessageReceivedClosure?
@@ -153,8 +155,14 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         
         if subscriber == nil && !subscribeToSelf {
             
-            startSubscriberOfStream(stream)
-            addSubscriberToSession(session, subscriber: subscriber!)
+            guard let newSubscriber = startSubscriberOfStream(stream).value() else {
+                
+                addSubscriberCompletion?(result: Result.failure(error: OTSessionError.SubscriberNotFound))
+                return
+            }
+            
+            subscriber = newSubscriber
+            addSubscriberToSession(session, subscriber: newSubscriber)
         }
     }
     
@@ -193,7 +201,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     func subscriberDidConnectToStream(subscriberKit: OTSubscriberKit) {
         
         let videoChatController = VideoChatViewController()
-        videoChatController.displaySubscriberViewWithSubscriber(self.subscriber!)
+        videoChatController.displayLocalViewWithSubscriber(self.subscriber!)
     }
     
     func subscriber(subscriber: OTSubscriberKit, didFailWithError error : OTError) {

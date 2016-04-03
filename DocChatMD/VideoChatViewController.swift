@@ -11,8 +11,8 @@ import SnapKit
 
 enum VideoViewError: ErrorType {
     
-    case PublisherViewNotFound
-    case SubscriberViewNotFound
+    case remoteViewNotFound
+    case localViewNotFound
 }
 
 private extension AVCaptureDevicePosition {
@@ -35,24 +35,23 @@ protocol VideoChatViewControllerDelegate: class {
     func restartSession()
 }
 
-typealias PublisherViewDisplayCompletion    = (result: Result<OTSession>) -> Void
-typealias PublisherCreationCompletion       = (result: Result<OTPublisher>) -> Void
-typealias SubscriberViewDisplayCompletion   = (result: Result<OTSession>) -> Void
+typealias RemoteViewDisplayCompletion   = (result: Result<OTSession>) -> Void
+typealias PublisherCreationCompletion   = (result: Result<OTPublisher>) -> Void
+typealias LocalViewDisplayCompletion    = (result: Result<OTSession>) -> Void
 
 final class VideoChatViewController: UIViewController, SettingsControlDelegate, RestartSessionViewDelegate {
     
-    private var publisherViewDisplayCompletion: PublisherViewDisplayCompletion?
-    private var publisherCreationCompletion: PublisherCreationCompletion?
-    private var subscriberViewDisplayCompletion: SubscriberViewDisplayCompletion?
-    
     weak var delegate: VideoChatViewControllerDelegate?
     private let openTokController   = OpenTokController()
+    private var remoteView          = UIView(frame: CGRectZero)
+    private let localView           = UIView(frame: CGRectZero)
+    private var settingsControl     = SettingsControl()
     private var videoSession: OTSession?
     private var publisher: OTPublisher?
-    private var publisherView       = UIView(frame: CGRectZero)
-    private let subscriberView      = UIView(frame: CGRectZero)
-    private var settingsControl     = SettingsControl()
     private var restartSessionView: RestartSessionView?
+    private var remoteViewDisplayCompletion: RemoteViewDisplayCompletion?
+    private var publisherCreationCompletion: PublisherCreationCompletion?
+    private var localViewDisplayCompletion: LocalViewDisplayCompletion?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,43 +65,36 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     
     private func createVideoViews() {
         
-        publisherView.frame    = self.view.frame
-        publisherView.hidden   = true
-        self.view.addSubview(publisherView)
+        remoteView.frame             = self.view.frame
+        remoteView.backgroundColor   = .blackColor()
+        remoteView.hidden            = true
+        self.view.addSubview(remoteView)
         
-        subscriberView.backgroundColor      = .greenColor()
-        subscriberView.layer.borderWidth    = 2
-        subscriberView.layer.borderColor    = UIColor.whiteColor().CGColor
-        subscriberView.hidden               = true
-        publisherView.addSubview(subscriberView)
+        localView.backgroundColor      = .blackColor()
+        localView.layer.borderWidth    = 2
+        localView.layer.borderColor    = UIColor.whiteColor().CGColor
+        localView.hidden               = true
+        self.view.addSubview(localView)
     }
     
     private func layoutViewElements() {
      
-        subscriberView.snp_makeConstraints { (make) in
+        localView.snp_makeConstraints { (make) in
             
             make.width.height.equalTo(150)
             make.right.bottom.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 10, 10))
         }
         
+        publisher?.view.snp_makeConstraints { (make) in
+            
+            make.width.height.equalTo(localView)
+            make.edges.equalTo(localView)
+        }
+        
         settingsControl.mainButton.snp_makeConstraints { (make) in
             
             make.width.height.equalTo(60)
-            
-            // if test subscriber view isn't already visible, add settings button in it's place
-            // otherwise place it to the left of the subscriber view
-            
-            //subscriberView.hidden = false // TESTING POSITION IF SUBSCRIBER IS PRESENT *** /////
-            ////////////////////////////////
-            
-            if subscriberView.hidden == true {
-                
-                make.right.bottom.equalTo(subscriberView).inset(UIEdgeInsetsMake(0, 0, -5, -5))
-                
-            } else {
-                
-                make.left.centerY.equalTo(subscriberView).inset(UIEdgeInsetsMake(0, -30, 0, 0))
-            }
+            make.left.centerY.equalTo(localView).inset(UIEdgeInsetsMake(0, -30, 0, 0))
         }
         
         settingsControl.resetButtonConstraints()
@@ -111,12 +103,12 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     
     // MARK: Video Session Display
     
-    func displayPublisherViewFromSession(session: OTSession?) {
+    func displayRemoteViewFromSession(session: OTSession?) {
         
         guard let currentSession = session else {
          
-            publisherViewDisplayCompletion?(result: Result.failure(error: VideoViewError.PublisherViewNotFound))
-            publisherViewDisplayCompletion = nil
+            remoteViewDisplayCompletion?(result: Result.failure(error: VideoViewError.remoteViewNotFound))
+            remoteViewDisplayCompletion = nil
             return
         }
         
@@ -126,7 +118,7 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         guard let publisher = publisherResult.value() else {
             
             publisherCreationCompletion?(result: Result.failure(error: OTSessionError.PublisherNotCreated))
-            publisherViewDisplayCompletion = nil
+            remoteViewDisplayCompletion = nil
             return
         }
         
@@ -138,25 +130,24 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
             presentViewController(alert, animated: true, completion: nil)
         }
 
-        publisher.view.frame = publisherView.frame
-        publisherView.hidden = false
-        publisherView.addSubview(publisher.view)
-
-        settingsControl.displaySettingsButtonsInView(publisherView)
+        localView.hidden            = false
+        localView.addSubview(publisher.view)
+        
+        settingsControl.displaySettingsButtonsInView(self.view)
         layoutViewElements()
     }
-
-    func displaySubscriberViewWithSubscriber(subscriber: OTSubscriber?) {
+ 
+    func displayLocalViewWithSubscriber(subscriber: OTSubscriber?) {
         
         guard let newSubscriber = subscriber else {
             
-            subscriberViewDisplayCompletion?(result: Result.failure(error: VideoViewError.SubscriberViewNotFound))
-            subscriberViewDisplayCompletion = nil
+            localViewDisplayCompletion?(result: Result.failure(error: VideoViewError.localViewNotFound))
+            localViewDisplayCompletion = nil
             return
         }
         
-        subscriberView.hidden = false
-        subscriberView.addSubview(newSubscriber.view)
+        remoteView.hidden = false
+        remoteView.addSubview(newSubscriber.view)
     }
 
     
@@ -185,20 +176,14 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     func didSelectButtonTwo() {
         
         publisher!.cameraPosition = publisher!.cameraPosition.reverseValue()
-        
-//        // toggle between front/back cameras
-//        if publisher!.cameraPosition == .Front {
-//            publisher!.cameraPosition = .Back
-//        } else {
-//            publisher!.cameraPosition = .Front
-//        }
     }
 
     func didSelectButtonThree() {
         
         // end the OpenTok session
-        publisherView.hidden    = true
-        subscriberView.hidden   = true
+        remoteView.hidden       = true
+        localView.hidden        = true
+        
         openTokController.endCurrentOTSession(videoSession)
         
         // add a view to restart the session
@@ -217,6 +202,9 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     // MARK: RestartSessionViewDelegate Method(s)
     
     func didSelectRestartSession() {
+
+        settingsControl.hideSettingsButtons()
+        settingsControl.mainButton.hidden = true
 
         UIView.animateWithDuration(0.3, animations: { 
             self.restartSessionView!.alpha = 0

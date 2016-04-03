@@ -26,7 +26,7 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         createViewElements()
         layoutViewElements()
     }
-
+    
     private func createViewElements() {
         
         // config. the navigation bar
@@ -77,7 +77,7 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
             self.activityIndicator.stopAnimating()
             
             // enable video display
-            self.videoViewController.displayPublisherViewFromSession(openTokSession)
+            self.videoViewController.displayRemoteViewFromSession(openTokSession)
             
             // enable text messaging
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("navbarChat", comment: "nav chat button label"), style: .Plain, target: self, action:#selector(self.startTextChat))

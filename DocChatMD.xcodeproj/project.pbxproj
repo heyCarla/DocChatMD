@@ -23,6 +23,7 @@
 		E19810ED1CAFFD8800F508F5 /* RestartSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19810EC1CAFFD8800F508F5 /* RestartSessionView.swift */; };
 		E19810F01CB12C0900F508F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E19810EF1CB12C0900F508F5 /* Localizable.strings */; };
 		E19810F21CB132B100F508F5 /* DocChatAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19810F11CB132B100F508F5 /* DocChatAlert.swift */; };
+		E198D1E61CB1B6CB001ADD45 /* DocChatSettingsControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E198D1E51CB1B6CB001ADD45 /* DocChatSettingsControlTests.swift */; };
 		E1DB86061CAA66BC00CA66BA /* VideoChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */; };
 		E1DB86081CAA66C600CA66BA /* TextChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */; };
 		E1DB860A1CAA94CB00CA66BA /* OpenTokController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DB86091CAA94CB00CA66BA /* OpenTokController.swift */; };
@@ -61,6 +62,7 @@
 		E19810EC1CAFFD8800F508F5 /* RestartSessionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartSessionView.swift; sourceTree = "<group>"; };
 		E19810EF1CB12C0900F508F5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E19810F11CB132B100F508F5 /* DocChatAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatAlert.swift; sourceTree = "<group>"; };
+		E198D1E51CB1B6CB001ADD45 /* DocChatSettingsControlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocChatSettingsControlTests.swift; sourceTree = "<group>"; };
 		E1DB85FE1CA9FBA700CA66BA /* DocChatMD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DocChatMD-Bridging-Header.h"; sourceTree = "<group>"; };
 		E1DB86051CAA66BC00CA66BA /* VideoChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoChatViewController.swift; sourceTree = "<group>"; };
 		E1DB86071CAA66C600CA66BA /* TextChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextChatViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				E11923F21CA5E6620054D8D3 /* DocChatMDTests.swift */,
 				E11924021CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift */,
 				E119240E1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift */,
+				E198D1E51CB1B6CB001ADD45 /* DocChatSettingsControlTests.swift */,
 				E11923F41CA5E6620054D8D3 /* Info.plist */,
 			);
 			path = DocChatMDTests;
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E11924031CA5EBDC0054D8D3 /* DocChatDatasourceTests.swift in Sources */,
+				E198D1E61CB1B6CB001ADD45 /* DocChatSettingsControlTests.swift in Sources */,
 				E119240F1CA5EF100054D8D3 /* DocChatModelFactoryTests.swift in Sources */,
 				E11923F31CA5E6620054D8D3 /* DocChatMDTests.swift in Sources */,
 			);

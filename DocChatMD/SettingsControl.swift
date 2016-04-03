@@ -44,8 +44,6 @@ final class SettingsControl: UIView {
     
     func displaySettingsButtonsInView(view: UIView) {
         
-//        guard let currentView = view else { return }
-        
         controlView = view
         
         buttonOne.setImage(UIImage(named: "mute.png"), forState: .Normal)
@@ -69,6 +67,7 @@ final class SettingsControl: UIView {
         mainButton.setImage(UIImage(named: "settings.png"), forState: .Normal)
         mainButton.setImage(UIImage(named: "settingsHighlighted.png"), forState: .Highlighted)
         mainButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
+        mainButton.hidden = false
         controlView!.addSubview(mainButton)
     }
     
