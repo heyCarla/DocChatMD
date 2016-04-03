@@ -10,13 +10,13 @@ import Foundation
 
 struct OpenTokSessionModel {
     
-    let sessionId = "2_MX40NTMxNjU0Mn5-MTQ1OTIzMjg5ODI5MH41WWtrSzFNdVg3NEZhYUVlYW9ybjAyc3R-UH4" // hard-coded session id as per code test requirements
+    let sessionId: String
     let token: String
     let apiKey = "45316542"
     
     init(sessionId: String, token: String) {
         
-//        self.sessionId  = sessionId
+        self.sessionId  = sessionId
         self.token      = token
     }
 }
