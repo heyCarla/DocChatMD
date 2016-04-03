@@ -146,6 +146,21 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         
         // mute/unmute publisher audio
         publisher!.publishAudio = !publisher!.publishAudio
+        
+        // update button image
+        var imageName = ""
+        
+        if publisher!.publishAudio {
+        
+            // display mute image
+            imageName = "mute"
+        } else {
+            // display mic image
+            imageName = "unmute"
+        }
+        
+        settingsControl.buttonOne.setImage(UIImage(named: "\(imageName).png"), forState: .Normal)
+        settingsControl.buttonOne.setImage(UIImage(named: "\(imageName)Highlighted.png"), forState: .Highlighted)
     }
     
     func buttonTwoAction() {
