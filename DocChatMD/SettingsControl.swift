@@ -81,20 +81,20 @@ final class SettingsControl: UIView {
         buttonOne.snp_makeConstraints { make in
             
             make.left.right.width.height.equalTo(mainButton)
-            self.buttonOneTopConstraint     = make.top.equalTo(mainButton).offset(0).constraint
+            self.buttonOneTopConstraint = make.top.equalTo(mainButton).offset(0).constraint
         }
         
         buttonTwo.snp_makeConstraints { make in
             
             make.top.bottom.width.equalTo(mainButton)
-            self.buttonTwoLeftConstraint = make.left.equalTo(mainButton).offset(0).constraint
-            self.buttonTwoTopConstraint = make.top.equalTo(mainButton).offset(0).constraint
+            self.buttonTwoLeftConstraint    = make.left.equalTo(mainButton).offset(0).constraint
+            self.buttonTwoTopConstraint     = make.top.equalTo(mainButton).offset(0).constraint
         }
         
         buttonThree.snp_makeConstraints { make in
             
             make.top.bottom.width.equalTo(mainButton)
-            self.buttonThreeLeftConstraint     = make.left.equalTo(mainButton).offset(0).constraint
+            self.buttonThreeLeftConstraint = make.left.equalTo(mainButton).offset(0).constraint
         }
         
         buttonsHidden = true

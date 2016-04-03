@@ -15,21 +15,29 @@ enum VideoViewError: ErrorType {
     case SubscriberViewNotFound
 }
 
+protocol VideoChatViewControllerDelegate: class {
+    
+    func restartSession()
+}
+
 typealias PublisherViewDisplayCompletion    = (result: Result<OTSession>) -> Void
 typealias PublisherCreationCompletion       = (result: Result<OTPublisher>) -> Void
 typealias SubscriberViewDisplayCompletion   = (result: Result<OTSession>) -> Void
 
-final class VideoChatViewController: UIViewController, SettingsControlDelegate {
+final class VideoChatViewController: UIViewController, SettingsControlDelegate, RestartSessionViewDelegate {
     
     private var publisherViewDisplayCompletion: PublisherViewDisplayCompletion?
     private var publisherCreationCompletion: PublisherCreationCompletion?
     private var subscriberViewDisplayCompletion: SubscriberViewDisplayCompletion?
     
+    weak var delegate: VideoChatViewControllerDelegate?
     private let openTokController   = OpenTokController()
-    private let subscriberView      = UIView(frame: CGRectZero)
-    private var publisherView       = UIView(frame: CGRectZero)
+    private var videoSession: OTSession?
     private var publisher: OTPublisher?
+    private var publisherView       = UIView(frame: CGRectZero)
+    private let subscriberView      = UIView(frame: CGRectZero)
     private var settingsControl     = SettingsControl()
+    private var restartSessionView: RestartSessionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +45,7 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
         settingsControl.delegate = self
         createVideoViews()
     }
-    
+
     
     // MARK: UI Elements
     
@@ -97,6 +105,7 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
             return
         }
         
+        videoSession        = currentSession
         let publisherResult = openTokController.createOTPublisher()
             
         guard let publisher = publisherResult.value() else {
@@ -151,10 +160,23 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate {
 
     func buttonThreeAction() {
         
-        // end the openTok session
-        publisherView.removeFromSuperview()
-        subscriberView.removeFromSuperview()
+        // end the OpenTok session
+        publisherView.hidden    = true
+        subscriberView.hidden   = true
+        openTokController.endCurrentOTSession(videoSession)
         
-        openTokController.endCurrentOTSession()
+        // add a view to restart the session
+        restartSessionView              = RestartSessionView(frame: self.view.frame)
+        restartSessionView!.delegate    = self
+        self.view.addSubview(restartSessionView!)
+    }
+    
+    
+    // MARK: RestartSessionViewDelegate Method(s)
+    
+    func restartSession() {
+
+        restartSessionView!.removeFromSuperview()
+        delegate?.restartSession()
     }
 }

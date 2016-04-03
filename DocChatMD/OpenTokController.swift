@@ -16,16 +16,21 @@ enum OTSessionError: ErrorType {
     case SubscriberNotFound
 }
 
-typealias SessionCompletion         = (result: Result<OTSession>) -> Void
-typealias MessageReceivedClosure    = (message: String?, isLocal: Bool) -> Void
+typealias SessionCompletion             = (result: Result<OTSession>) -> Void
+typealias MessageReceivedClosure        = (message: String?, isLocal: Bool) -> Void
+typealias RemoveSubscriberCompletion    = (result: Result<OTSession>) -> Void
+typealias EndSessionCompletion          = (result: Result<OTSession>) -> Void
 
 final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate {
     
     var session: OTSession?
+    var publisher: OTPublisher?
     var subscriber: OTSubscriber?
     let subscribeToSelf = false
     var messageReceivedClosure: MessageReceivedClosure?
     private var sessionConnectionCompletion: SessionCompletion?
+    private var removeSubscriberCompletion: RemoveSubscriberCompletion?
+    private var endSessionCompletion: EndSessionCompletion?
     
     // error alerts
     private var controllerView: UIViewController?
@@ -37,12 +42,14 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         _ = AkiraDatasource().openTokSessionIdRequest({ (sessionModel) in
             
             let model       = sessionModel.value()
-            self.session    = OTSession(apiKey: model!.apiKey, sessionId: model!.sessionId, delegate: self)
+            let newSession  = OTSession(apiKey: model!.apiKey, sessionId: model!.sessionId, delegate: self)
+            print("self.session = \(self.session)")
             
-            if let session = self.session {
-                
+            if let currentSession = newSession  {
+            
+                self.session = currentSession
                 var openTokError: OTError?
-                session.connectWithToken(model!.token, error: &openTokError)
+                currentSession.connectWithToken(model!.token, error: &openTokError)
                 
                 if let error = openTokError {
                     
@@ -101,23 +108,34 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     // remove subscriber
     func removeSubscriberFromSession(session: OTSession) {
         
-        if let subscriber = self.subscriber {
+        guard let subscriberToRemove = self.subscriber else {
             
-            var openTokError : OTError?
-            session.unsubscribe(subscriber, error: &openTokError)
-            
-            if let error = openTokError {
-                displayAlertViewWithOTError(error)
-            }
-            
-            subscriber.view.removeFromSuperview()
-            self.subscriber = nil
+            removeSubscriberCompletion?(result: Result.failure(error: OTSessionError.SubscriberNotFound))
+            removeSubscriberCompletion = nil
+            return
         }
+        
+        var openTokError : OTError?
+        session.unsubscribe(subscriber, error: &openTokError)
+        
+        if let error = openTokError {
+            displayAlertViewWithOTError(error)
+        }
+        
+        subscriberToRemove.view.removeFromSuperview()
+        self.subscriber = nil
     }
     
-    func endCurrentOTSession() {
+    func endCurrentOTSession(session: OTSession?) {
         
-        sessionDidDisconnect(session)
+        guard let currentSession = session  else {
+            
+            endSessionCompletion?(result: Result.failure(error: OTSessionError.InvalidSession))
+            endSessionCompletion = nil
+            return
+        }
+        
+        currentSession.disconnect()
     }
     
     
@@ -146,8 +164,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         // only run sessionConnectionCompletion once
         sessionConnectionCompletion?(result: Result.success(value: session))
         sessionConnectionCompletion = nil
-        
-//        print("session connected: \(session)")
     }
     
     func sessionDidDisconnect(session: OTSession!) {

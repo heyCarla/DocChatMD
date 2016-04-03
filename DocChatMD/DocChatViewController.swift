@@ -8,9 +8,10 @@
 
 import UIKit
 
-final class DocChatViewController: UIViewController {
+final class DocChatViewController: UIViewController, VideoChatViewControllerDelegate {
     
     private let openTokController = OpenTokController()
+//    private var textViewController: TextChatViewController?
     
     private lazy var videoViewController: VideoChatViewController = {
         return VideoChatViewController()
@@ -23,12 +24,18 @@ final class DocChatViewController: UIViewController {
         super.viewDidLoad()
         
         // config. the navigation bar
+//        navBarConfig()
         title = "Doc Chat"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
-       
+
         // create video and text chat views
         displayVideoChatController()
         connectToOpenTokSession()
+    }
+    
+    private func navBarConfig() {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
+        
     }
 
     private func connectToOpenTokSession() {
@@ -37,7 +44,7 @@ final class DocChatViewController: UIViewController {
 //        openTokController.connectToOTSession { sessionResult in
         openTokController.connectToOTSessionFromController(self) { sessionResult in
             
-            guard let openTokSession = sessionResult.value() else { // TEST ALERTS W/ .error()
+            guard let openTokSession = sessionResult.value() else { // TODO: TEST ALERTS W/ .error() ******
                 
                 // display error alert
                 let alert = UIAlertController(title: "Video Chat Session Error", message: "Invalid session, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -48,8 +55,8 @@ final class DocChatViewController: UIViewController {
                 
                 alert.addAction(okAction)
                 self.presentViewController(alert, animated: true, completion: nil)
-
-                // TODO: run session connect aga
+                self.restartSession()
+                
                 return
             }
             
@@ -57,6 +64,7 @@ final class DocChatViewController: UIViewController {
             self.videoViewController.displayPublisherViewFromSession(openTokSession)
             
             // enable text messaging
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(self.startTextChat))
             self.textViewController.enableTextChatInSession(openTokSession)
             self.textViewController.updateMessagesWithController(self.openTokController)
         }
@@ -64,7 +72,8 @@ final class DocChatViewController: UIViewController {
     
     private func displayVideoChatController() {
         
-        self.navigationController?.pushViewController(videoViewController, animated: true)
+        videoViewController.delegate = self
+        self.view.addSubview(videoViewController.view)
     }
 
     
@@ -72,6 +81,20 @@ final class DocChatViewController: UIViewController {
     
     func startTextChat() {
      
+//        textViewController = TextChatViewController()
         self.navigationController?.pushViewController(textViewController, animated: true)
+    }
+    
+    
+    // MARK: VideoChatViewControllerDelegate Method(s)
+    
+    func restartSession() {
+        
+        self.navigationItem.rightBarButtonItem = nil
+//        textViewController.view = nil
+        textViewController.removePreviousChatMessages()
+        
+        displayVideoChatController()
+        connectToOpenTokSession()
     }
 }
