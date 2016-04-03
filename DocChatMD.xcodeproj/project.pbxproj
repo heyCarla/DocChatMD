@@ -126,6 +126,7 @@
 			children = (
 				E11923FF1CA5E69A0054D8D3 /* Datasources */,
 				E11923FD1CA5E68C0054D8D3 /* Models */,
+				E19810EE1CB128DD00F508F5 /* ModelFactories */,
 				E11923FE1CA5E6930054D8D3 /* UI */,
 				E11923DD1CA5E6620054D8D3 /* AppDelegate.swift */,
 				E11923DF1CA5E6620054D8D3 /* DocChatViewController.swift */,
@@ -152,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				E11924121CA8DA250054D8D3 /* OpenTokSessionModel.swift */,
-				E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */,
 				E11924141CA902580054D8D3 /* OperationResultWrapper.swift */,
 			);
 			name = Models;
@@ -176,6 +176,14 @@
 				E11924041CA5ECCC0054D8D3 /* AkiraDatasource.swift */,
 			);
 			name = Datasources;
+			sourceTree = "<group>";
+		};
+		E19810EE1CB128DD00F508F5 /* ModelFactories */ = {
+			isa = PBXGroup;
+			children = (
+				E11924101CA5EF730054D8D3 /* OpenTokSessionModelFactory.swift */,
+			);
+			name = ModelFactories;
 			sourceTree = "<group>";
 		};
 		E1C22F941CAE06FA004C540C /* Video */ = {

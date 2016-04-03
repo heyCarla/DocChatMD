@@ -58,14 +58,12 @@ struct AkiraDatasource {
                         completion(result: Result.success(value: sessionModel))
                         
                     case .failure(let error):
-                        print(error)
                         completion(result: Result.failure(error: error))
                     }
                     
                 })
                 
             case .failure(let error):
-                print(error)
                 completion(result: Result.failure(error: error))
             }
         }
@@ -101,7 +99,6 @@ struct AkiraDatasource {
             
             guard let jsonData = data else {
                 
-                print("no data -- fail")
                 dispatch_async(dispatch_get_main_queue(), {
                     completion(result: Result.failure(error: DatasourceError.UnexpectedAPIResponse))
                 })
@@ -111,9 +108,7 @@ struct AkiraDatasource {
             
             guard let dataDictionary = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) as! [String: AnyObject] else {
                 
-                print("unexpected data received -- fail")
                 completion(result: Result.failure(error: DatasourceError.UnexpectedAPIResponse))
-                
                 return
             }
             

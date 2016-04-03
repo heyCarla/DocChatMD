@@ -8,17 +8,21 @@
 
 import Foundation
 
+typealias MessageSentCompletion = (result: Result<String>) -> Void
+
 final class OpenTokTextChatController: NSObject {
+    
+    private var messageSentCompletion: MessageSentCompletion?
     
     func sendChatMessageInSession(session: OTSession, message: String) {
         
         var openTokError : OTError?
         session.signalWithType("chat", string: message, connection: nil, error: &openTokError)
         
-        if let error = openTokError {
-            print("open tok error: \(error)")
+        if openTokError == nil {
+            messageSentCompletion!(result: Result.failure(error: OTSessionError.SessionMessageNotSent))
         } else {
-            print("signal sent: \(message)")
+            messageSentCompletion!(result: Result.success(value: message))
         }
     }
 }

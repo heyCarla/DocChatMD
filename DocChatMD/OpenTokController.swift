@@ -14,6 +14,7 @@ enum OTSessionError: ErrorType {
     case PublisherNotFound
     case PublisherNotCreated
     case SubscriberNotFound
+    case SessionMessageNotSent
 }
 
 typealias SessionCompletion             = (result: Result<OTSession>) -> Void
@@ -43,7 +44,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
             
             let model       = sessionModel.value()
             let newSession  = OTSession(apiKey: model!.apiKey, sessionId: model!.sessionId, delegate: self)
-            print("self.session = \(self.session)")
             
             if let currentSession = newSession  {
             
@@ -66,7 +66,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         
         guard let publisher = OTPublisher(delegate: self) else {
             
-            print("failed to create a publisher -- fail")
             return Result.failure(error: OTSessionError.PublisherNotFound)
         }
         
@@ -88,7 +87,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         
         guard let subscriber = OTSubscriber(stream: stream, delegate: self) else {
             
-            print("failed to start subscriber -- fail")
             return Result.failure(error: OTSessionError.SubscriberNotFound)
         }
         
@@ -167,13 +165,10 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
     
     func sessionDidDisconnect(session: OTSession!) {
-        print("session disconnected: \(session)")
     }
     
     func session(session: OTSession!, streamCreated stream: OTStream!) {
         
-        print("session stream created (\(stream.streamId))")
-
         if subscriber == nil && !subscribeToSelf {
             
             startSubscriberOfStream(stream)
@@ -183,23 +178,18 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     
     func session(session: OTSession, streamDestroyed stream: OTStream) {
         
-        print("session stream destroyed (\(stream.streamId))")
-        
         if subscriber?.stream.streamId == stream.streamId {
             removeSubscriberFromSession(session)
         }
     }
     
     func session(session: OTSession, connectionCreated connection : OTConnection) {
-        print("session connectionCreated (\(connection.connectionId))")
     }
     
     func session(session: OTSession, connectionDestroyed connection : OTConnection) {
-        print("session connectionDestroyed (\(connection.connectionId))")
     }
     
     func session(session: OTSession, didFailWithError error: OTError) {
-        print("session didFailWithError \(error)")
     }
     
     // chat-specific session delegate method
@@ -219,29 +209,25 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     // MARK: OTSubcsriberDelegate Method(s)
     
     func subscriberDidConnectToStream(subscriberKit: OTSubscriberKit) {
-        print("subscriberDidConnectToStream \(subscriberKit)")
         
         let videoChatController = VideoChatViewController()
         videoChatController.displaySubscriberViewWithSubscriber(self.subscriber!)
     }
     
     func subscriber(subscriber: OTSubscriberKit, didFailWithError error : OTError) {
-        print("subscriber \(subscriber.stream.streamId) didFailWithError\(error)")
     }
     
     
     // MARK: OTPublisherDelegate Method(s)
     
     func publisher(publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        print("publisher streamCreated \(stream)")
-        
+
         if subscriber == nil && subscribeToSelf {
             startSubscriberOfStream(stream)
         }
     }
     
     func publisher(publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
-        print("publisher streamDestroyed \(stream)")
         
         if subscriber?.stream.streamId == stream.streamId {
             removeSubscriberFromSession(stream.session)
@@ -249,6 +235,5 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
     
     func publisher(publisher: OTPublisherKit, didFailWithError error: OTError) {
-        print("publisher didFailWithError \(error)")
     }
 }

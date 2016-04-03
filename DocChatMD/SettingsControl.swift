@@ -45,10 +45,7 @@ final class SettingsControl: UIView {
     
     func displaySettingsButtonsInView(view: UIView?) {
         
-        guard let currentView = view else {
-            print("view does not exist")
-            return
-        }
+        guard let currentView = view else { return }
         
         controlView = currentView
         

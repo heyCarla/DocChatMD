@@ -23,12 +23,10 @@ struct OpenTokSessionModelFactory {
         
         // get session id
         guard let _ = data["opentok_session_id"] else {
-            print("no session key present -- fail")
             return Result.failure(error: ParseError.MissingKey(key: "opentok_session_id"))
         }
         
         guard let sessionId = data["opentok_session_id"] as? String else {
-            print("failed to retrieve session id -- fail")
             return Result.failure(error: ParseError.UnexpectedType)
         }
         
@@ -42,12 +40,10 @@ struct OpenTokSessionModelFactory {
         
         // get session token
         guard let _ = data["opentok_token"] else {
-            print("no token present -- fail")
             return Result.failure(error: ParseError.MissingKey(key: "opentok_token"))
         }
         
         guard let token = data["opentok_token"] as? String else {
-            print("failed to retrieve token -- fail")
             return Result.failure(error: ParseError.UnexpectedType)
         }
         
