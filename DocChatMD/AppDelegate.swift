@@ -16,12 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        window                  = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let mainWindow          = UIWindow(frame: UIScreen.mainScreen().bounds)
         let mainViewController  = DocChatViewController()
         let navViewController   = UINavigationController(rootViewController: mainViewController)
         
-        window?.rootViewController = navViewController
-        window?.makeKeyAndVisible()
+        mainWindow.rootViewController = navViewController
+        mainWindow.makeKeyAndVisible()
+        
+        window = mainWindow
+        
         return true
     }
 
