@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '549DF9643F5579AAC7CDFB89'
-               BlueprintName = 'JSQMessagesViewController'
+               BlueprintIdentifier = '7A5A8BCB46107E642AF75A45'
+               BlueprintName = 'Pods-DocChatMDTests'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'JSQMessagesViewController.framework'>
+               BuildableName = 'Pods_DocChatMDTests.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

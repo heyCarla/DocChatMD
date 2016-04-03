@@ -8,6 +8,5 @@ pod 'JSQMessagesViewController', '~> 7.2'
 end
 
 target 'DocChatMDTests' do
-
+pod 'OpenTok', '~> 2.7'
 end
-
