@@ -1,0 +1,18 @@
+/* 
+  localizable.strings
+  DocChatMD
+
+  Created by Carla Alexander on 2016-04-03.
+  Copyright © 2016 MagicNoodles. All rights reserved.
+*/
+
+
+// Navbar Strings
+"navbarTitle"  = "Doc Chat";
+"navbarChat"   = "Chat";
+
+// Alert Strings
+"sessionErrorTitle"         = "Video Chat Session Error";
+"sessionErrorInvalid"       = "Invalid session, please try again.";
+"sessionErrorActionReload"  = "Reload";
+"sessionErrorAlertAction"   = "OK";

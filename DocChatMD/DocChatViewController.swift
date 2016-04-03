@@ -11,8 +11,6 @@ import UIKit
 final class DocChatViewController: UIViewController, VideoChatViewControllerDelegate {
     
     private let openTokController = OpenTokController()
-//    private var textViewController: TextChatViewController?
-    
     private lazy var videoViewController: VideoChatViewController = {
         return VideoChatViewController()
     }()
@@ -24,8 +22,8 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         super.viewDidLoad()
         
         // config. the navigation bar
-        title = "Doc Chat"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
+        title                               = NSLocalizedString("navbarTitle", comment: "navbar title label")
+        navigationController?.navigationBar.translucent = true
 
         // create video and text chat views
         displayVideoChatController()
@@ -35,14 +33,14 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     private func connectToOpenTokSession() {
         
         // run new instance of OpenTok session
-//        openTokController.connectToOTSession { sessionResult in
-        openTokController.connectToOTSessionFromController(self) { sessionResult in
+        openTokController.connectToOTSession() { sessionResult in
             
             guard let openTokSession = sessionResult.value() else {
                 
                 // display error alert
-                let alert = UIAlertController(title: "Video Chat Session Error", message: "Invalid session, please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                let okAction = UIAlertAction(title: "Reload", style: UIAlertActionStyle.Default, handler: { action in
+                let alert = UIAlertController(title: NSLocalizedString("sessionErrorTitle", comment: "invalid session"), message: NSLocalizedString("sessionErrorInvalid", comment: "invalid session"), preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let okAction = UIAlertAction(title: NSLocalizedString("sessionErrorActionReload", comment: "reload"), style: UIAlertActionStyle.Default, handler: { action in
                     
                     alert.dismissViewControllerAnimated(true, completion: nil)
                     self.restartSession()
@@ -58,7 +56,7 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
             self.videoViewController.displayPublisherViewFromSession(openTokSession)
             
             // enable text messaging
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(self.startTextChat))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("navbarChat", comment: "nav chat button label"), style: .Plain, target: self, action:#selector(self.startTextChat))
             self.textViewController.enableTextChatInSession(openTokSession)
             self.textViewController.updateMessagesWithController(self.openTokController)
         }
@@ -89,7 +87,8 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     
     func restartSession() {
         
-        self.navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem?.tintColor = .clearColor()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title:" ", style: .Plain, target: self, action:nil)
         textViewController.removePreviousChatMessages()
         
         displayVideoChatController()
