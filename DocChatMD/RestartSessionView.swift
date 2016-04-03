@@ -35,7 +35,8 @@ class RestartSessionView: UIView {
     
     private func displayResetButton() {
         
-        resetButton.backgroundColor = .redColor()
+        resetButton.setImage(UIImage(named: "restart.png"), forState: .Normal)
+        resetButton.setImage(UIImage(named: "restartHighlighted.png"), forState: .Highlighted)
         resetButton.addTarget(self, action: #selector(restartSession), forControlEvents: .TouchUpInside)
         self.addSubview(resetButton)
     }

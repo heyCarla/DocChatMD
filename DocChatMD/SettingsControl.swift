@@ -52,22 +52,26 @@ final class SettingsControl: UIView {
         
         controlView = currentView
         
-        buttonOne.setImage(UIImage(named: "placeholderBtn.png"), forState: .Normal)
+        buttonOne.setImage(UIImage(named: "mute.png"), forState: .Normal)
+        buttonOne.setImage(UIImage(named: "muteHighlighted.pnt"), forState: .Highlighted)
         buttonOne.alpha = 0
         buttonOne.addTarget(self, action: #selector(buttonOneAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonOne)
         
-        buttonTwo.setImage(UIImage(named: "placeholderBtn.png"), forState: .Normal)
+        buttonTwo.setImage(UIImage(named: "rotate.png"), forState: .Normal)
+        buttonTwo.setImage(UIImage(named: "rotateHighlighted.png"), forState: .Highlighted)
         buttonTwo.alpha = 0
         buttonTwo.addTarget(self, action: #selector(buttonTwoAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonTwo)
         
-        buttonThree.setImage(UIImage(named: "placeholderBtn.png"), forState: .Normal)
+        buttonThree.setImage(UIImage(named: "endChat.png"), forState: .Normal)
+        buttonThree.setImage(UIImage(named: "endChatHighlighted.png"), forState: .Highlighted)
         buttonThree.alpha = 0
         buttonThree.addTarget(self, action: #selector(buttonThreeAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonThree)
         
-        mainButton.setImage(UIImage(named: "placeholderBtn.png"), forState: .Normal)
+        mainButton.setImage(UIImage(named: "settings.png"), forState: .Normal)
+        mainButton.setImage(UIImage(named: "settingsHighlighted.png"), forState: .Highlighted)
         mainButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
         controlView!.addSubview(mainButton)
     }
