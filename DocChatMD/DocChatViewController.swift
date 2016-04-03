@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SnapKit
 
 final class DocChatViewController: UIViewController, VideoChatViewControllerDelegate {
     
+    private let activityIndicator = UIActivityIndicatorView(frame: CGRectZero)
     private let openTokController = OpenTokController()
     private lazy var videoViewController: VideoChatViewController = {
         return VideoChatViewController()
@@ -21,13 +23,31 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViewElements()
+        layoutViewElements()
+    }
+
+    private func createViewElements() {
+        
         // config. the navigation bar
-        title                               = NSLocalizedString("navbarTitle", comment: "navbar title label")
-        navigationController?.navigationBar.translucent = true
+        title = NSLocalizedString("navbarTitle", comment: "navbar title label")
+        navigationController?.navigationBar.translucent = false
 
         // create video and text chat views
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         displayVideoChatController()
         connectToOpenTokSession()
+    }
+    
+    private func layoutViewElements() {
+        
+        activityIndicator.snp_makeConstraints { (make) in
+            
+            make.width.height.equalTo(100)
+            make.centerX.centerY.equalTo(self.view)
+        }
     }
 
     private func connectToOpenTokSession() {
@@ -36,6 +56,8 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         openTokController.connectToOTSession() { sessionResult in
             
             guard let openTokSession = sessionResult.value() else {
+                
+                self.activityIndicator.stopAnimating()
                 
                 // display error alert
                 let alert = UIAlertController(title: NSLocalizedString("sessionErrorTitle", comment: "invalid session"), message: NSLocalizedString("sessionErrorInvalid", comment: "invalid session"), preferredStyle: UIAlertControllerStyle.Alert)
@@ -51,6 +73,8 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
                 
                 return
             }
+            
+            self.activityIndicator.stopAnimating()
             
             // enable video display
             self.videoViewController.displayPublisherViewFromSession(openTokSession)
@@ -89,7 +113,7 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         
         textViewController.removePreviousChatMessages()
         
-        displayVideoChatController()
-        connectToOpenTokSession()
+        createViewElements()
+        layoutViewElements()
     }
 }
