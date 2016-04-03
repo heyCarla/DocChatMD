@@ -12,9 +12,9 @@ import SnapKit
 
 protocol SettingsControlDelegate: class {
     
-    func buttonOneAction()
-    func buttonTwoAction()
-    func buttonThreeAction()
+    func didSelectButtonOne()
+    func didSelectButtonTwo()
+    func didSelectButtonThree()
 }
 
 final class SettingsControl: UIView {
@@ -36,18 +36,17 @@ final class SettingsControl: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displaySettingsButtonsInView(view: UIView?) {
+    func displaySettingsButtonsInView(view: UIView) {
         
-        guard let currentView = view else { return }
+//        guard let currentView = view else { return }
         
-        controlView = currentView
+        controlView = view
         
         buttonOne.setImage(UIImage(named: "mute.png"), forState: .Normal)
         buttonOne.setImage(UIImage(named: "muteHighlighted.pnt"), forState: .Highlighted)
@@ -161,16 +160,16 @@ final class SettingsControl: UIView {
     
     func buttonOneAction(sender: UIButton) {
         
-        delegate?.buttonOneAction()        
+        delegate?.didSelectButtonOne()
     }
     
     func buttonTwoAction(sender: UIButton) {
         
-        delegate?.buttonTwoAction()
+        delegate?.didSelectButtonTwo()
     }
     
     func buttonThreeAction(sender: UIButton) {
         
-        delegate?.buttonThreeAction()
+        delegate?.didSelectButtonThree()
     }
 }

@@ -87,8 +87,6 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
     
     func restartSession() {
         
-        navigationItem.rightBarButtonItem?.tintColor = .clearColor()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title:" ", style: .Plain, target: self, action:nil)
         textViewController.removePreviousChatMessages()
         
         displayVideoChatController()

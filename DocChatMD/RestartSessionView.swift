@@ -12,7 +12,7 @@ import SnapKit
 
 protocol RestartSessionViewDelegate: class {
     
-    func restartSession()
+    func didSelectRestartSession()
 }
 
 final class RestartSessionView: UIView {
@@ -56,6 +56,6 @@ final class RestartSessionView: UIView {
     func restartSession() {
 
         // restart the OpenTok session
-        delegate?.restartSession()
+        delegate?.didSelectRestartSession()
     }
 }

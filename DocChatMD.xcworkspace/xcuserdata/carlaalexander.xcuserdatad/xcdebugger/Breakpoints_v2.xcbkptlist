@@ -9,38 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DocChatMD/OpenTokSessionModel.swift"
-            timestampString = "480925660.440508"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "init(sessionId:token:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DocChatMD/OpenTokController.swift"
-            timestampString = "481372937.298943"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "startSubscriberOfStream(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DocChatMD/LayerClientIntegration.swift"
             timestampString = "481175943.281883"
             startingColumnNumber = "9223372036854775807"
@@ -86,16 +54,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "481372937.298943"
+            timestampString = "481380798.969002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "buttonTwoAction()"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "didSelectButtonTwo()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DocChatMD/VideoChatViewController.swift"
-            timestampString = "481346613.168077"
+            timestampString = "481374652.868394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "layoutViewElements()"
             landmarkType = "5">
             <Locations>
@@ -150,16 +118,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DocChatMD/OpenTokController.swift"
-            timestampString = "481372937.298943"
+            filePath = "DocChatMD/DocChatViewController.swift"
+            timestampString = "481382207.248599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "addSubscriberToSession(_:subscriber:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,44 +137,44 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DocChatMD/DocChatViewController.swift"
-            timestampString = "481372937.298943"
+            filePath = "DocChatMD/VideoChatViewController.swift"
+            timestampString = "481382865.720837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "connectToOpenTokSession()"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "displayPublisherViewFromSession(_:)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DocChatMD.DocChatViewController.(connectToOpenTokSession in _B522EE2C18004FABB264CF55260B0B16) () -&gt; ()"
+                  symbolName = "DocChatMD.VideoChatViewController.displayPublisherViewFromSession (Swift.Optional&lt;__ObjC.OTSession&gt;) -&gt; ()"
                   moduleName = "DocChatMD"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/DocChatViewController.swift"
-                  timestampString = "481345860.432383"
+                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/VideoChatViewController.swift"
+                  timestampString = "481384061.083987"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "12">
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "350">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DocChatMD.DocChatViewController.((connectToOpenTokSession in _B522EE2C18004FABB264CF55260B0B16) () -&gt; ()).(closure #1)"
+                  symbolName = "DocChatMD.VideoChatViewController.displayPublisherViewFromSession (Swift.Optional&lt;__ObjC.OTSession&gt;) -&gt; ()"
                   moduleName = "DocChatMD"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/DocChatViewController.swift"
-                  timestampString = "481345860.432517"
+                  urlString = "file:///Users/carlaalexander/Documents/Dev/Projects/Akira/DocChatMD/DocChatMD/VideoChatViewController.swift"
+                  timestampString = "481384061.084222"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "31">
+                  startingLineNumber = "135"
+                  endingLineNumber = "135"
+                  offsetFromSymbolStart = "468">
                </Location>
             </Locations>
          </BreakpointContent>

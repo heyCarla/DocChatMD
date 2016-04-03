@@ -15,6 +15,21 @@ enum VideoViewError: ErrorType {
     case SubscriberViewNotFound
 }
 
+private extension AVCaptureDevicePosition {
+    
+    func reverseValue() -> AVCaptureDevicePosition {
+        
+        switch self {
+        case .Front:
+            return .Back
+        case .Back:
+            return .Front
+        default:
+            return .Unspecified
+        }
+    }
+}
+
 protocol VideoChatViewControllerDelegate: class {
     
     func restartSession()
@@ -117,7 +132,12 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         
         self.publisher = publisher
         
-        openTokController.addPublisherToSession(currentSession, publisher: publisher)
+        if let error:OTError = openTokController.addPublisherToSession(currentSession, publisher: publisher) {
+            
+            let alert = DocChatAlert.displayAlertViewWithOTError(error)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+
         publisher.view.frame = publisherView.frame
         publisherView.hidden = false
         publisherView.addSubview(publisher.view)
@@ -142,16 +162,15 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     
     // MARK: SettingsControlDelegate Methods
     
-    func buttonOneAction() {
+    func didSelectButtonOne() {
         
         // mute/unmute publisher audio
         publisher!.publishAudio = !publisher!.publishAudio
         
         // update button image
-        var imageName = ""
+        let imageName: String
         
         if publisher!.publishAudio {
-        
             // display mute image
             imageName = "mute"
         } else {
@@ -163,17 +182,19 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         settingsControl.buttonOne.setImage(UIImage(named: "\(imageName)Highlighted.png"), forState: .Highlighted)
     }
     
-    func buttonTwoAction() {
+    func didSelectButtonTwo() {
         
-        // toggle between front/back cameras
-        if publisher!.cameraPosition == .Front {
-            publisher!.cameraPosition = .Back
-        } else {
-            publisher!.cameraPosition = .Front
-        }
+        publisher!.cameraPosition = publisher!.cameraPosition.reverseValue()
+        
+//        // toggle between front/back cameras
+//        if publisher!.cameraPosition == .Front {
+//            publisher!.cameraPosition = .Back
+//        } else {
+//            publisher!.cameraPosition = .Front
+//        }
     }
 
-    func buttonThreeAction() {
+    func didSelectButtonThree() {
         
         // end the OpenTok session
         publisherView.hidden    = true
@@ -195,12 +216,12 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
     
     // MARK: RestartSessionViewDelegate Method(s)
     
-    func restartSession() {
+    func didSelectRestartSession() {
 
         UIView.animateWithDuration(0.3, animations: { 
             self.restartSessionView!.alpha = 0
             
-        }) { (Bool) in
+        }) { finished in
             self.restartSessionView!.removeFromSuperview()
         }
         

@@ -31,42 +31,62 @@ struct AkiraDatasource {
                 
                 let sessionResult = OpenTokSessionModelFactory().openTokSessionIdWithData(data)
         
-                guard let sessionId = sessionResult.value() else {
+                guard sessionResult.value() != nil else {
                     
                     // force unwrapped error because it's impossible for it to be nil in this Result where the value is nil
-                    completion(result: .failure(error: sessionResult.error()!))
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completion(result: .failure(error: sessionResult.error()!))
+                    })
                     return
                 }
                 
                 // for the purposes of this test, using hard-coded session id as mentioned in requirements
                 let hardcodedSessionId = "2_MX40NTMxNjU0Mn5-MTQ1OTIzMjg5ODI5MH41WWtrSzFNdVg3NEZhYUVlYW9ybjAyc3R-UH4"
-                
-                self.requestOpenTokSessionTokenWithSessionId(hardcodedSessionId, completion: { (dataResult) in
-                    
-                    switch dataResult {
-                    case .success(let data):
-                        
-                        guard let sessionToken = OpenTokSessionModelFactory().openTokSessionTokenWithData(data).value() else {
-                            
-                            // force unwrapped error because it's impossible for it to be nil in this Result where the value is nil
-                            completion(result: .failure(error: dataResult.error()!))
-                            return
-                        }
-                        
-                        let sessionModel = OpenTokSessionModelFactory().openTokSessionModelWithId(sessionId, token: sessionToken)
-                        
-                        completion(result: Result.success(value: sessionModel))
-                        
-                    case .failure(let error):
-                        completion(result: Result.failure(error: error))
-                    }
-                    
-                })
+                self.startTokenRequestWithHardCodedId(hardcodedSessionId, completion: completion)
                 
             case .failure(let error):
-                completion(result: Result.failure(error: error))
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(result: Result.failure(error: error))
+                })
             }
         }
+    }
+    
+    private func startTokenRequestWithHardCodedId(sessionId: String, completion: OpenTokSessionModelCompletion) {
+        
+        self.requestOpenTokSessionTokenWithSessionId(sessionId, completion: { (dataResult) in
+            
+            switch dataResult {
+            case .success(let data):
+                
+                guard let sessionToken = OpenTokSessionModelFactory().openTokSessionTokenWithData(data).value() else {
+                    
+                    // force unwrapped error because it's impossible for it to be nil in this Result where the value is nil
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        completion(result: .failure(error: dataResult.error()!))
+
+                    })
+                    return
+                }
+                
+                let sessionModel = OpenTokSessionModelFactory().openTokSessionModelWithId(sessionId, token: sessionToken)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(result: Result.success(value: sessionModel))
+                })
+                
+                
+            case .failure(let error):
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(result: Result.failure(error: error))
+                })
+                
+            }
+            
+        })
     }
     
     private func requestOpenTokSessionTokenWithSessionId(sessionId: String, completion: AkiraDatasourceResponseCompletion) {
@@ -74,8 +94,10 @@ struct AkiraDatasource {
         // get OpenTok token from tokens endpoint
         let url = "\(sessionsURL)/" + "\(sessionId)/tokens"
         makeDatasourceRequest(url, httpMethod: "POST") { (tokenResult) in
-            
+          
+        dispatch_async(dispatch_get_main_queue(), {
             completion(result: tokenResult)
+        })
         }
     }
     
@@ -108,11 +130,16 @@ struct AkiraDatasource {
             
             guard let dataDictionary = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) as! [String: AnyObject] else {
                 
-                completion(result: Result.failure(error: DatasourceError.UnexpectedAPIResponse))
+                dispatch_async(dispatch_get_main_queue(), {
+                    completion(result: Result.failure(error: DatasourceError.UnexpectedAPIResponse))
+                })
+                
                 return
             }
             
-            completion(result: Result.success(value: dataDictionary))
+            dispatch_async(dispatch_get_main_queue(), {
+                completion(result: Result.success(value: dataDictionary))
+            })
         }
         
         dataTask.resume()

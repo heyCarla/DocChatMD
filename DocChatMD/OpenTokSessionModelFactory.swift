@@ -16,7 +16,6 @@ enum ParseError: ErrorType {
 
 struct OpenTokSessionModelFactory {
     
-    
     // MARK: Session Id Method(s)
     
     func openTokSessionIdWithData(data: [String:AnyObject]) -> Result<String> {

@@ -14,6 +14,7 @@ enum OTSessionError: ErrorType {
     case PublisherNotFound
     case PublisherNotCreated
     case SubscriberNotFound
+    case SubscriberNotRemoved
     case SessionMessageNotSent
 }
 
@@ -32,11 +33,8 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     private var removeSubscriberCompletion: RemoveSubscriberCompletion?
     private var endSessionCompletion: EndSessionCompletion?
     var messageReceivedClosure: MessageReceivedClosure?
-
-    // error alerts
-    private var controllerView: UIViewController?
     
-    func connectToOTSessionFromController(controller: UIViewController, completion: SessionCompletion) {
+    func connectToOTSession(completion: SessionCompletion) {
         
         sessionConnectionCompletion = completion
         
@@ -50,13 +48,10 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
                 self.session = currentSession
                 var openTokError: OTError?
                 currentSession.connectWithToken(model!.token, error: &openTokError)
-                
-                if let error = openTokError {
-                    
-                    if self.controllerView == controller {
-                        self.displayAlertViewWithOTError(error)
-                    }
-                }
+                completion(result: Result.success(value: currentSession))
+
+            } else {
+                completion(result: Result.failure(error: OTSessionError.InvalidSession))
             }
         })
     }
@@ -72,14 +67,17 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         return Result.success(value: publisher)
     }
     
-    func addPublisherToSession(session: OTSession, publisher: OTPublisher) {
+    func addPublisherToSession(session: OTSession, publisher: OTPublisher) -> OTError? {
         
         var openTokError : OTError?
         session.publish(publisher, error: &openTokError)
-        
-        if let error = openTokError {
-            displayAlertViewWithOTError(error)
+    
+        let successCodes = (2000...2999)
+        if let error = openTokError where !successCodes.contains(error.code) {
+            return openTokError
         }
+     
+        return nil
     }
     
     // create instance of OTSubscriber
@@ -97,9 +95,10 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         
         var openTokError : OTError?
         session.subscribe(subscriber, error: &openTokError)
-        
-        if let error = openTokError {
-            displayAlertViewWithOTError(error)
+
+        if let _ = openTokError {
+            
+            sessionConnectionCompletion?(result: Result.failure(error: OTSessionError.SubscriberNotFound))
         }
     }
 
@@ -116,8 +115,9 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         var openTokError : OTError?
         session.unsubscribe(subscriber, error: &openTokError)
         
-        if let error = openTokError {
-            displayAlertViewWithOTError(error)
+        if let _ = openTokError {
+            
+            sessionConnectionCompletion?(result: Result.failure(error: OTSessionError.SubscriberNotRemoved))
         }
         
         subscriberToRemove.view.removeFromSuperview()
@@ -134,24 +134,6 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         }
         
         currentSession.disconnect()
-    }
-    
-    
-    // MARK: AlertView
-    
-    private func displayAlertViewWithOTError(error: OTError) {
-        
-        let sessionAlertTitle   = "Video Chat Session Error"
-        let actionTitle         = "OK"
-
-        let alert = UIAlertController(title: sessionAlertTitle, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: { action in
-            
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        })
-        
-        alert.addAction(okAction)
-        self.controllerView!.presentViewController(alert, animated: true, completion: nil)
     }
     
     

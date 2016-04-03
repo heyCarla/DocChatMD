@@ -34,7 +34,7 @@ final class TextChatViewController: JSQMessagesViewController {
         
         // JSQMessagesViewController requires a sender id and display name for use
         self.senderId           = "localUser"
-        self.senderDisplayName  = ""
+        self.senderDisplayName  = "Me"
         
         setupChatBubbles()
     }
@@ -88,7 +88,7 @@ final class TextChatViewController: JSQMessagesViewController {
     
     func removePreviousChatMessages() {
         
-        if messages.count >= 1 {
+        if !messages.isEmpty {
             
             self.collectionView.performBatchUpdates({
                 
@@ -150,8 +150,20 @@ final class TextChatViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         
         // send message through OpenTok session
-        OpenTokTextChatController().sendChatMessageInSession(currentSession!, message: text)
+        if let error = OpenTokTextChatController().sendChatMessageInSession(currentSession!, message: text) {
+            
+            let alert = DocChatAlert.displayAlertViewWithOTError(error)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         finishSendingMessage()
+    }
+    
+    override func didPressAccessoryButton(sender: UIButton!) {
+        
+        // under normal circumstances I would fully implement attachments in the chat, 
+        // but for the purposes of this test (and due to time constraints) a print will suffice
+        print("attach accessory")
     }
 }
