@@ -23,15 +23,15 @@ typealias EndSessionCompletion          = (result: Result<OTSession>) -> Void
 
 final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate {
     
-    var session: OTSession?
-    var publisher: OTPublisher?
-    var subscriber: OTSubscriber?
-    let subscribeToSelf = false
-    var messageReceivedClosure: MessageReceivedClosure?
+    private var session: OTSession?
+    private var publisher: OTPublisher?
+    private var subscriber: OTSubscriber?
+    private let subscribeToSelf = false
     private var sessionConnectionCompletion: SessionCompletion?
     private var removeSubscriberCompletion: RemoveSubscriberCompletion?
     private var endSessionCompletion: EndSessionCompletion?
-    
+    var messageReceivedClosure: MessageReceivedClosure?
+
     // error alerts
     private var controllerView: UIViewController?
     
@@ -84,7 +84,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
     
     // create instance of OTSubscriber
-    func startSubscriberOfStream(stream: OTStream) -> Result<OTSubscriber> {
+    private func startSubscriberOfStream(stream: OTStream) -> Result<OTSubscriber> {
         
         guard let subscriber = OTSubscriber(stream: stream, delegate: self) else {
             
@@ -95,7 +95,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
         return Result.success(value: subscriber)
     }
     
-    func addSubscriberToSession(session: OTSession, subscriber: OTSubscriber) {
+    private func addSubscriberToSession(session: OTSession, subscriber: OTSubscriber) {
         
         var openTokError : OTError?
         session.subscribe(subscriber, error: &openTokError)
@@ -106,7 +106,7 @@ final class OpenTokController: NSObject, OTSessionDelegate, OTSubscriberKitDeleg
     }
 
     // remove subscriber
-    func removeSubscriberFromSession(session: OTSession) {
+    private func removeSubscriberFromSession(session: OTSession) {
         
         guard let subscriberToRemove = self.subscriber else {
             

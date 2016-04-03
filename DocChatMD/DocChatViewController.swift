@@ -24,18 +24,12 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         super.viewDidLoad()
         
         // config. the navigation bar
-//        navBarConfig()
         title = "Doc Chat"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
 
         // create video and text chat views
         displayVideoChatController()
         connectToOpenTokSession()
-    }
-    
-    private func navBarConfig() {
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .Plain, target: self, action:#selector(startTextChat))
-        
     }
 
     private func connectToOpenTokSession() {

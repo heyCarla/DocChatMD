@@ -15,10 +15,10 @@ protocol RestartSessionViewDelegate: class {
     func restartSession()
 }
 
-class RestartSessionView: UIView {
+final class RestartSessionView: UIView {
     
     weak var delegate: RestartSessionViewDelegate?
-    let resetButton = UIButton(frame: CGRectZero)
+    private let resetButton = UIButton(frame: CGRectZero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

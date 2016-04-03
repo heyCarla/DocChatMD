@@ -19,7 +19,7 @@ typealias OpenTokSessionModelCompletion     = (result: Result<OpenTokSessionMode
 
 struct AkiraDatasource {
     
-    let sessionsURL = "http://challenge-api.akira.md:9292/v1/opentok/sessions"
+    private let sessionsURL = "http://challenge-api.akira.md:9292/v1/opentok/sessions"
     
     func openTokSessionIdRequest(completion: OpenTokSessionModelCompletion) {
         

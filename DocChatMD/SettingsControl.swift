@@ -19,14 +19,14 @@ protocol SettingsControlDelegate: class {
 
 final class SettingsControl: UIView {
     
-    var controlView: UIView?
+    private var controlView: UIView?
     weak var delegate: SettingsControlDelegate?
     
     // settings UI
     let mainButton              = UIButton(frame: CGRectZero)
     let buttonOne               = UIButton(frame: CGRectZero)   // publisher buttonOne/mute
-    let buttonTwo               = UIButton(frame: CGRectZero)   // front/back camera
-    let buttonThree             = UIButton(frame: CGRectZero)   // end video/chat session
+    private let buttonTwo       = UIButton(frame: CGRectZero)   // front/back camera
+    private let buttonThree     = UIButton(frame: CGRectZero)   // end video/chat session
     private var buttonsHidden   = true
     
     private var buttonOneTopConstraint: Constraint?
@@ -164,7 +164,7 @@ final class SettingsControl: UIView {
     
     func buttonOneAction(sender: UIButton) {
         
-        delegate?.buttonOneAction()
+        delegate?.buttonOneAction()        
     }
     
     func buttonTwoAction(sender: UIButton) {

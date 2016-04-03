@@ -25,9 +25,9 @@ final class TextChatViewController: JSQMessagesViewController {
     private var sessionTextCompletion: SessionTextCompletion?
     private var updateMessagesCompletion: UpdateMessagesCompletion?
     
-    var messages = [JSQMessage]()
-    var outgoingBubbleImageView: JSQMessagesBubbleImage!
-    var incomingBubbleImageView: JSQMessagesBubbleImage!
+    private var messages = [JSQMessage]()
+    private var outgoingBubbleImageView: JSQMessagesBubbleImage!
+    private var incomingBubbleImageView: JSQMessagesBubbleImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ final class TextChatViewController: JSQMessagesViewController {
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     }
     
-    func addMessage(id: String, text: String) {
+    private func addMessage(id: String, text: String) {
         
         let message = JSQMessage(senderId: id, displayName: "", text: text)
         messages.append(message)
