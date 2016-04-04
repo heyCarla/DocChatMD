@@ -19,8 +19,10 @@ typealias OpenTokSessionModelCompletion     = (result: Result<OpenTokSessionMode
 
 struct AkiraDatasource {
     
-    private let sessionsURL = "http://challenge-api.akira.md:9292/v1/opentok/sessions"
-    
+    // for the purposes of this test, using hard-coded session id as mentioned in requirements
+    private let hardcodedSessionId  = "2_MX40NTMxNjU0Mn5-MTQ1OTIzMjg5ODI5MH41WWtrSzFNdVg3NEZhYUVlYW9ybjAyc3R-UH4"
+    private let sessionsURL         = "http://challenge-api.akira.md:9292/v1/opentok/sessions"
+
     func openTokSessionIdRequest(completion: OpenTokSessionModelCompletion) {
         
         // get OpenTok session id from sessions endpoint
@@ -40,9 +42,7 @@ struct AkiraDatasource {
                     return
                 }
                 
-                // for the purposes of this test, using hard-coded session id as mentioned in requirements
-                let hardcodedSessionId = "2_MX40NTMxNjU0Mn5-MTQ1OTIzMjg5ODI5MH41WWtrSzFNdVg3NEZhYUVlYW9ybjAyc3R-UH4"
-                self.startTokenRequestWithHardCodedId(hardcodedSessionId, completion: completion)
+                self.startTokenRequestWithHardCodedId(self.hardcodedSessionId, completion: completion)
                 
             case .failure(let error):
                 
@@ -95,9 +95,9 @@ struct AkiraDatasource {
         let url = "\(sessionsURL)/" + "\(sessionId)/tokens"
         makeDatasourceRequest(url, httpMethod: "POST") { (tokenResult) in
           
-        dispatch_async(dispatch_get_main_queue(), {
-            completion(result: tokenResult)
-        })
+            dispatch_async(dispatch_get_main_queue(), {
+                completion(result: tokenResult)
+            })
         }
     }
     
@@ -117,6 +117,8 @@ struct AkiraDatasource {
                 dispatch_async(dispatch_get_main_queue(), {
                     completion(result: Result.failure(error: DatasourceError.NetworkRequestFailure(error: error)))
                 })
+                
+                return
             }
             
             guard let jsonData = data else {

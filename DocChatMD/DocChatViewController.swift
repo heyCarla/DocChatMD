@@ -45,7 +45,6 @@ final class DocChatViewController: UIViewController, VideoChatViewControllerDele
         
         activityIndicator.snp_makeConstraints { (make) in
             
-            make.width.height.equalTo(100)
             make.centerX.centerY.equalTo(self.view)
         }
     }

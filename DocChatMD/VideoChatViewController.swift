@@ -134,11 +134,11 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         localView.addSubview(publisher.view)
         
         settingsControl.displaySettingsButtonsInView(self.view)
-        setsettingsControlButtonImages()
+        addSettingsControlButtonImages()
         layoutViewElements()
     }
     
-    private func setSettingsControlButtonImages() {
+    private func addSettingsControlButtonImages() {
         
         // main: settings button
         settingsControl.setButtonImageForPosition(UIImage(named: "settings.png")!, buttonPosition: .Main, state: .Normal)
