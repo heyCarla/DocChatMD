@@ -15,7 +15,6 @@ class DocChatDatasourceTests: XCTestCase {
     func testAkiraDatasourceRequest() {
         
         let expectation = expectationWithDescription("OpenTok data completion")
-        waitForExpectationsWithTimeout(5, handler: nil)
         
         let akiraDatasource = AkiraDatasource()
         akiraDatasource.openTokSessionIdRequest { (result) in
@@ -26,5 +25,7 @@ class DocChatDatasourceTests: XCTestCase {
                 XCTFail()
             }
         }
+        
+        waitForExpectationsWithTimeout(5, handler: nil)
     }
 }
