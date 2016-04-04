@@ -17,6 +17,14 @@ protocol SettingsControlDelegate: class {
     func didSelectButtonThree()
 }
 
+enum SettingsControlButtonPosition {
+    
+    case Main
+    case TopRight
+    case BottomLeft
+    case TopLeft
+}
+
 final class SettingsControl: UIView {
     
     private var controlView: UIView?
@@ -24,7 +32,7 @@ final class SettingsControl: UIView {
     
     // settings UI
     let mainButton              = UIButton(frame: CGRectZero)
-    let buttonOne               = UIButton(frame: CGRectZero)   // publisher buttonOne/mute
+    private let buttonOne       = UIButton(frame: CGRectZero)   // publisher audio/mute
     private let buttonTwo       = UIButton(frame: CGRectZero)   // front/back camera
     private let buttonThree     = UIButton(frame: CGRectZero)   // end video/chat session
     private var buttonsHidden   = true
@@ -46,29 +54,36 @@ final class SettingsControl: UIView {
         
         controlView = view
         
-        buttonOne.setImage(UIImage(named: "mute.png"), forState: .Normal)
-        buttonOne.setImage(UIImage(named: "muteHighlighted.pnt"), forState: .Highlighted)
         buttonOne.alpha = 0
         buttonOne.addTarget(self, action: #selector(buttonOneAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonOne)
         
-        buttonTwo.setImage(UIImage(named: "rotate.png"), forState: .Normal)
-        buttonTwo.setImage(UIImage(named: "rotateHighlighted.png"), forState: .Highlighted)
         buttonTwo.alpha = 0
         buttonTwo.addTarget(self, action: #selector(buttonTwoAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonTwo)
         
-        buttonThree.setImage(UIImage(named: "endChat.png"), forState: .Normal)
-        buttonThree.setImage(UIImage(named: "endChatHighlighted.png"), forState: .Highlighted)
         buttonThree.alpha = 0
         buttonThree.addTarget(self, action: #selector(buttonThreeAction), forControlEvents: .TouchUpInside)
         controlView!.addSubview(buttonThree)
         
-        mainButton.setImage(UIImage(named: "settings.png"), forState: .Normal)
-        mainButton.setImage(UIImage(named: "settingsHighlighted.png"), forState: .Highlighted)
         mainButton.addTarget(self, action: #selector(revealSettingsButtons), forControlEvents: .TouchUpInside)
         mainButton.hidden = false
         controlView!.addSubview(mainButton)
+    }
+    
+    func setButtonImageForPosition(image: UIImage, buttonPosition: SettingsControlButtonPosition, state: UIControlState) {
+        
+        switch buttonPosition {
+            
+        case .Main:
+            self.mainButton.setImage(image, forState: state)
+        case .TopRight:
+            self.buttonOne.setImage(image, forState: state)
+        case .BottomLeft:
+            self.buttonTwo.setImage(image, forState: state)
+        case .TopLeft:
+            self.buttonThree.setImage(image, forState: state)
+        }
     }
     
     func resetButtonConstraints() {
@@ -85,7 +100,7 @@ final class SettingsControl: UIView {
         
         buttonTwo.snp_makeConstraints { make in
             
-            make.top.bottom.width.equalTo(mainButton)
+            make.bottom.width.equalTo(mainButton)
             self.buttonTwoLeftConstraint    = make.left.equalTo(mainButton).offset(0).constraint
             self.buttonTwoTopConstraint     = make.top.equalTo(mainButton).offset(0).constraint
         }
@@ -136,7 +151,7 @@ final class SettingsControl: UIView {
                 self.buttonOne.alpha    = 0
                 self.buttonThree.alpha  = 0
                 
-                }, completion: nil)
+            }, completion: nil)
         }
     }
     

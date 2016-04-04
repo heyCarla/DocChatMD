@@ -134,7 +134,27 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
         localView.addSubview(publisher.view)
         
         settingsControl.displaySettingsButtonsInView(self.view)
+        setsettingsControlButtonImages()
         layoutViewElements()
+    }
+    
+    private func setSettingsControlButtonImages() {
+        
+        // main: settings button
+        settingsControl.setButtonImageForPosition(UIImage(named: "settings.png")!, buttonPosition: .Main, state: .Normal)
+        settingsControl.setButtonImageForPosition(UIImage(named: "settingsHighlighted.png")!, buttonPosition: .Main, state: .Normal)
+        
+        // topRight: audio button
+        settingsControl.setButtonImageForPosition(UIImage(named: "mute.png")!, buttonPosition: .TopRight, state: .Normal)
+        settingsControl.setButtonImageForPosition(UIImage(named: "muteHighlighted.png")!, buttonPosition: .TopRight, state: .Normal)
+        
+        // left: camera button
+        settingsControl.setButtonImageForPosition(UIImage(named: "rotate.png")!, buttonPosition: .BottomLeft, state: .Normal)
+        settingsControl.setButtonImageForPosition(UIImage(named: "rotateHighlighted.png")!, buttonPosition: .BottomLeft, state: .Normal)
+        
+        // bottomLeft: end session button
+        settingsControl.setButtonImageForPosition(UIImage(named: "endChat.png")!, buttonPosition: .TopLeft, state: .Normal)
+        settingsControl.setButtonImageForPosition(UIImage(named: "endChatHighlighted.png")!, buttonPosition: .TopLeft, state: .Normal)
     }
  
     func displayLocalViewWithSubscriber(subscriber: OTSubscriber?) {
@@ -169,8 +189,8 @@ final class VideoChatViewController: UIViewController, SettingsControlDelegate, 
             imageName = "unmute"
         }
         
-        settingsControl.buttonOne.setImage(UIImage(named: "\(imageName).png"), forState: .Normal)
-        settingsControl.buttonOne.setImage(UIImage(named: "\(imageName)Highlighted.png"), forState: .Highlighted)
+        settingsControl.setButtonImageForPosition(UIImage(named: "\(imageName)")!, buttonPosition: .TopRight, state: .Normal)
+        settingsControl.setButtonImageForPosition(UIImage(named: "\(imageName)Highlighted.png")!, buttonPosition: .TopRight, state: .Normal)
     }
     
     func didSelectButtonTwo() {
